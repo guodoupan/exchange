@@ -6,10 +6,10 @@ This is a craglist like app, the major difference is that user can not buy/sell 
 
 ### Features:
 
-   User can sign up
-   User can sign in
-   User can post an item for exchanging
-   User can explore others exchanging stuff
-   User can exchange an item with others
-   User can rate others
+   - [ ] User can sign up
+   - [ ] User can sign in
+   - [ ] User can post an item for exchanging
+   - [ ] User can explore others exchanging stuff
+   - [ ] User can exchange an item with others
+   - [ ] User can rate others
 
