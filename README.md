@@ -13,5 +13,5 @@ This is a craglist like app, the major difference is that user can not buy/sell 
    - [ ] User can see detail page of an item
    - [ ] User can request an exchange
    - [ ] User can approve/reject an exchange
-   - [ ] (Optional?)User can see his/others' profile
+   - [ ] User can see his/others' profile(Optional?) 
 
