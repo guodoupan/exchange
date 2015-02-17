@@ -9,7 +9,9 @@ This is a craglist like app, the major difference is that user can not buy/sell 
    - [ ] User can sign up
    - [ ] User can sign in
    - [ ] User can post an item for exchanging
-   - [ ] User can explore others exchanging stuff
-   - [ ] User can exchange an item with others
-   - [ ] User can rate others
+   - [ ] User can see an item list(all public items, search by keyword or type)
+   - [ ] User can see detail page of an item
+   - [ ] User can request an exchange
+   - [ ] User can approve/reject an exchange
+   - [ ] (Optional?)User can see his/others' profile
 
