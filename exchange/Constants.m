@@ -11,5 +11,7 @@
 @implementation Constants
 
 NSString *const DidLogoutNotificationKey = @"DidLogout";
+NSString *const ParseAppId = @"aaLzWbeOa3M9BJxjwMDRdWkv9S5UKzTSGlK2wXqU";
+NSString *const ParseClientKey = @"UGAf111BWxFvABGZ06GgNuZzEPbKNylrlOKVoijD";
 
 @end

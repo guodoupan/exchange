@@ -20,7 +20,7 @@
     
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:DidLogoutNotificationKey object:nil];
     
-    [Parse setApplicationId:@"aaLzWbeOa3M9BJxjwMDRdWkv9S5UKzTSGlK2wXqU" clientKey:@"UGAf111BWxFvABGZ06GgNuZzEPbKNylrlOKVoijD"];
+    [Parse setApplicationId:ParseAppId clientKey:ParseClientKey];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     PFUser *user = [PFUser currentUser];
