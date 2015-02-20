@@ -27,6 +27,15 @@
     return self;
 }
 
++ (NSArray *)exchangeItemsWithArray:(NSArray *)array {
+    NSMutableArray *items = [NSMutableArray array];
+    for (PFObject *object in array) {
+        ExchangeItem *item = [[ExchangeItem alloc] initWithPFObject:object];
+        [items addObject: item];
+    }
+    return items;
+}
+
 - (PFObject *)pfObject {
     PFObject *object = [PFObject objectWithClassName:NSStringFromClass([self class])];
     object[@"name"] = self.name;

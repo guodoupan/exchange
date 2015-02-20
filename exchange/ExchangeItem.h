@@ -21,8 +21,8 @@
 @property (nonatomic, strong) NSDate *uploadDate;
 
 - (id)initWithPFObject: (PFObject *)object;
++ (NSArray *)exchangeItemsWithArray: (NSArray *)array;
 
 - (PFObject *)pfObject;
 
-- (void)save;
 @end
