@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
+#import "ExchangeItem.h"
 
 @interface PostViewController : UIViewController
 

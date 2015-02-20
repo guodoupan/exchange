@@ -9,6 +9,8 @@
 #import "PostViewController.h"
 
 @interface PostViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *descTextField;
 
 @end
 
@@ -22,6 +24,26 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)onPost:(id)sender {
+    ExchangeItem *item = [[ExchangeItem alloc] init];
+    item.name = self.nameTextField.text;
+    item.desc = self.descTextField.text;
+    //TODO use the proper values
+    item.nsid = @"nsid";
+    item.imageUrl = @"image url";
+    item.type = 1;
+    item.status = 1;
+    item.userId = @"user id";
+    
+    [[item pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            NSLog(@"post success");
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            NSLog(@"post failed");
+        }
+    }];
 }
 
 /*
