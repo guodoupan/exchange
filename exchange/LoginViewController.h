@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  LoginViewController.h
 //  exchange
 //
 //  Created by Doupan Guo on 2/20/15.
@@ -7,15 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LoginViewController.h"
 #import "HomeViewController.h"
-#import "Constants.h"
 #import <Parse/Parse.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface LoginViewController : UIViewController
 
 @end
-

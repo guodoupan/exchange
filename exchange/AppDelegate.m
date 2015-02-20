@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -19,12 +18,27 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:DidLogoutNotificationKey object:nil];
+    
     [Parse setApplicationId:@"aaLzWbeOa3M9BJxjwMDRdWkv9S5UKzTSGlK2wXqU" clientKey:@"UGAf111BWxFvABGZ06GgNuZzEPbKNylrlOKVoijD"];
     
-    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
-    testObject[@"foo"] = @"bar";
-    [testObject saveInBackground];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    PFUser *user = [PFUser currentUser];
+    if (user == nil) {
+        self.window.rootViewController = [[LoginViewController alloc] init];
+    } else {
+        self.window.rootViewController = [[HomeViewController alloc] init];
+    }
+   
+    
+    [self.window makeKeyAndVisible];
+    
+
     return YES;
+}
+
+- (void)userDidLogout {
+    self.window.rootViewController = [[LoginViewController alloc] init];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
