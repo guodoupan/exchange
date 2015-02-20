@@ -24,13 +24,14 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     PFUser *user = [PFUser currentUser];
+    UIViewController * vc;
     if (user == nil) {
-        self.window.rootViewController = [[LoginViewController alloc] init];
+        vc = [[LoginViewController alloc] init];
     } else {
-        self.window.rootViewController = [[HomeViewController alloc] init];
+        vc = [[HomeViewController alloc] init];
     }
    
-    
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
     
 
@@ -38,7 +39,8 @@
 }
 
 - (void)userDidLogout {
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+    self.window.rootViewController = nvc;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

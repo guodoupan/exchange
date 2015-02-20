@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Constants.h"
+#import "PostViewController.h"
 
 @interface HomeViewController : UIViewController
 

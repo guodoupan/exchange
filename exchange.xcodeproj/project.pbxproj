@@ -17,6 +17,9 @@
 		0F4139471A978CEE00AF7B2F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139451A978CEE00AF7B2F /* HomeViewController.m */; };
 		0F4139481A978CEE00AF7B2F /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F4139461A978CEE00AF7B2F /* HomeViewController.xib */; };
 		0F41394B1A978FB300AF7B2F /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F41394A1A978FB300AF7B2F /* Constants.m */; };
+		0F41394E1A9791EA00AF7B2F /* ExchangeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F41394D1A9791EA00AF7B2F /* ExchangeItem.m */; };
+		0F4139521A9796B700AF7B2F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139501A9796B700AF7B2F /* PostViewController.m */; };
+		0F4139531A9796B700AF7B2F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F4139511A9796B700AF7B2F /* PostViewController.xib */; };
 		6D8F41555109065CFD426E05 /* libPods-exchange.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13197BD78D9A67FC13DCB48C /* libPods-exchange.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +52,11 @@
 		0F4139461A978CEE00AF7B2F /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		0F4139491A978FB300AF7B2F /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		0F41394A1A978FB300AF7B2F /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		0F41394C1A9791EA00AF7B2F /* ExchangeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItem.h; sourceTree = "<group>"; };
+		0F41394D1A9791EA00AF7B2F /* ExchangeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItem.m; sourceTree = "<group>"; };
+		0F41394F1A9796B700AF7B2F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
+		0F4139501A9796B700AF7B2F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
+		0F4139511A9796B700AF7B2F /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
 		13197BD78D9A67FC13DCB48C /* libPods-exchange.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-exchange.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491FD95B3D666630D2AA27C1 /* Pods-exchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-exchange/Pods-exchange.release.xcconfig"; sourceTree = "<group>"; };
 		B8DDB147AE27FD758CDC1253 /* Pods-exchange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exchange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exchange/Pods-exchange.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,6 +147,8 @@
 			children = (
 				0F4139491A978FB300AF7B2F /* Constants.h */,
 				0F41394A1A978FB300AF7B2F /* Constants.m */,
+				0F41394C1A9791EA00AF7B2F /* ExchangeItem.h */,
+				0F41394D1A9791EA00AF7B2F /* ExchangeItem.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -159,6 +169,9 @@
 				0F4139441A978CEE00AF7B2F /* HomeViewController.h */,
 				0F4139451A978CEE00AF7B2F /* HomeViewController.m */,
 				0F4139461A978CEE00AF7B2F /* HomeViewController.xib */,
+				0F41394F1A9796B700AF7B2F /* PostViewController.h */,
+				0F4139501A9796B700AF7B2F /* PostViewController.m */,
+				0F4139511A9796B700AF7B2F /* PostViewController.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -266,6 +279,7 @@
 				0F4139211A97804700AF7B2F /* Images.xcassets in Resources */,
 				0F4139401A97886200AF7B2F /* LoginViewController.xib in Resources */,
 				0F4139481A978CEE00AF7B2F /* HomeViewController.xib in Resources */,
+				0F4139531A9796B700AF7B2F /* PostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,11 +330,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F4139521A9796B700AF7B2F /* PostViewController.m in Sources */,
 				0F41394B1A978FB300AF7B2F /* Constants.m in Sources */,
 				0F4139191A97804700AF7B2F /* AppDelegate.m in Sources */,
 				0F4139161A97804700AF7B2F /* main.m in Sources */,
 				0F41393F1A97886200AF7B2F /* LoginViewController.m in Sources */,
 				0F4139471A978CEE00AF7B2F /* HomeViewController.m in Sources */,
+				0F41394E1A9791EA00AF7B2F /* ExchangeItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +452,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = exchange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -447,6 +464,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = exchange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

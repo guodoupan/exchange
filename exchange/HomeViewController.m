@@ -14,6 +14,19 @@
 
 @implementation HomeViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.title = @"Exchange";
+        UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(onLogout:)];
+        self.navigationItem.leftBarButtonItem = logoutButton;
+        
+        UIBarButtonItem *postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered target:self action:@selector(onPost:)];
+        self.navigationItem.rightBarButtonItem = postButton;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -23,9 +36,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)onLogout:(id)sender {
+- (void)onLogout:(id)sender {
     [PFUser logOut];
     [[NSNotificationCenter defaultCenter] postNotificationName:DidLogoutNotificationKey object:nil];
+}
+
+- (void)onPost:(id)sender {
+    PostViewController *vc = [[PostViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*
