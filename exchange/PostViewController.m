@@ -32,7 +32,7 @@
     //TODO use the proper values
     item.imageUrl = @"image url";
     item.type = 1;
-    item.status = Uploaded;
+    item.status = ItemUploaded;
     item.userId = [[PFUser currentUser] objectId];
     
     [[item pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
