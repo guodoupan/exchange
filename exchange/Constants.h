@@ -15,10 +15,17 @@ extern NSString *const ParseAppId;
 extern NSString *const ParseClientKey;
 
 typedef enum ItemStatus : NSInteger {
-    Uploaded, // just uploaded
-    ExchangeRequesting, // someone requesting an exchange
-    ExchangeAccepted, // exchange accecpted
-    NotAvaiable // not avaiable for exchange
+    ItemUploaded, // just uploaded
+    ItemExchangeRequesting, // someone requesting an exchange
+    ItemExchangeAccepted, // exchange accecpted
+    ItemNotAvaiable // not avaiable for exchange
 } ItemStatus;
+
+typedef enum TransactionStatus : NSInteger {
+    TransactionRequesting,
+    TransactionAccepted,
+    TransactionRejected,
+    TransactionClosed
+} TransactionStatus;
 
 @end
