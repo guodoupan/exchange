@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "ExchangeItem.h"
+#import "Constants.h"
 
 @interface PostViewController : UIViewController
 

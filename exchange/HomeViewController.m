@@ -53,6 +53,7 @@
     }
     ExchangeItem *item = self.dataArray[indexPath.row];
     cell.textLabel.text = item.name;
+    cell.detailTextLabel.text = item.desc;
     return cell;
 }
 

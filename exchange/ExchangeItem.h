@@ -11,14 +11,15 @@
 
 @interface ExchangeItem : NSObject
 
-@property (nonatomic, strong) NSString *nsid;
+@property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *desc;
 @property (nonatomic, strong) NSString *imageUrl;
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, strong) NSString *userId;
-@property (nonatomic, strong) NSDate *uploadDate;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) NSDate *updatedAt;
 
 - (id)initWithPFObject: (PFObject *)object;
 + (NSArray *)exchangeItemsWithArray: (NSArray *)array;

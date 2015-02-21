@@ -14,4 +14,11 @@ extern NSString *const DidLogoutNotificationKey;
 extern NSString *const ParseAppId;
 extern NSString *const ParseClientKey;
 
+typedef enum ItemStatus : NSInteger {
+    Uploaded, // just uploaded
+    ExchangeRequesting, // someone requesting an exchange
+    ExchangeAccepted, // exchange accecpted
+    NotAvaiable // not avaiable for exchange
+} ItemStatus;
+
 @end

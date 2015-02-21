@@ -14,14 +14,15 @@
     self = [super init];
     
     if (self) {
-        self.nsid = object[@"nsid"];
+        self.objectId = [object objectId];
         self.name = object[@"name"];
         self.desc = object[@"desc"];
         self.imageUrl = object[@"imageUrl"];
         self.type = [[object valueForKey:@"type"] integerValue];
         self.status = [[object valueForKey:@"status"] integerValue];
         self.userId = object[@"userid"];
-        //TODO date
+        self.createdAt = [object createdAt];
+        self.updatedAt = [object updatedAt];
     }
     
     return self;

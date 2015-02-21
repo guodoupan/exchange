@@ -8,7 +8,7 @@
 
 #import "LoginViewController.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
 
@@ -27,7 +27,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.passwordTextfield.delegate = self;
+    self.passwordTextfield.secureTextEntry = YES;
     // Do any additional setup after loading the view from its nib.
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
 }
 
 - (void)didReceiveMemoryWarning {

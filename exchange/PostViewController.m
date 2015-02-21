@@ -30,11 +30,10 @@
     item.name = self.nameTextField.text;
     item.desc = self.descTextField.text;
     //TODO use the proper values
-    item.nsid = @"nsid";
     item.imageUrl = @"image url";
     item.type = 1;
-    item.status = 1;
-    item.userId = @"user id";
+    item.status = Uploaded;
+    item.userId = [[PFUser currentUser] objectId];
     
     [[item pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
