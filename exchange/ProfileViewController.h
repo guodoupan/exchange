@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 #import "ProfileHeaderView.h"
 #import "Constants.h"
+#import "ExchangeItem.h"
 
 @interface ProfileViewController : UIViewController
 
+@property (nonatomic, strong) PFUser *user;
 @end

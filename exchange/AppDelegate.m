@@ -46,9 +46,10 @@
     HomeViewController* vc1 = [[HomeViewController alloc] init];
     UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc1];
     self.postVc = [[PostViewController alloc] init];
-    ProfileViewController *vc3 = [[ProfileViewController alloc] init];
+    ProfileViewController *profileVc = [[ProfileViewController alloc] init];
+    profileVc.user = [PFUser currentUser];
     
-    NSArray* controllers = [NSArray arrayWithObjects:nvc, self.postVc, vc3, nil];
+    NSArray* controllers = [NSArray arrayWithObjects:nvc, self.postVc, profileVc, nil];
     tabBarController.viewControllers = controllers;
     tabBarController.delegate = self;
     self.window.rootViewController = tabBarController;

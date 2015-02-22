@@ -10,6 +10,8 @@
 
 @interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, ProfileHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *dataArray;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -29,13 +31,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
     ProfileHeaderView *headerView = [ProfileHeaderView profileHeader];
     headerView.delegate = self;
-    [headerView setUser: [PFUser currentUser]];
+    [headerView setUser: self.user];
     self.tableView.tableHeaderView = headerView;
+    
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,16 +55,36 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    ExchangeItem *item = self.dataArray[indexPath.row];
+    cell.textLabel.text = item.name;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return self.dataArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+}
+
+- (void)loadData {
+    PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
+    [query orderByDescending:@"updatedAt"];
+    [query whereKey:@"userid" equalTo:[self.user objectId]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %d items.", objects.count);
+            // Do something with the found objects
+            self.dataArray = [ExchangeItem exchangeItemsWithArray:objects];
+            [self.tableView reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
