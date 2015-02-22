@@ -81,7 +81,7 @@
 
 - (void)showDefaultTitle {
     self.title = @"Exchange";
-    UIImage *image = [UIImage imageNamed:@"search"];
+    UIImage *image = [UIImage imageNamed:@"explore"];
     UITabBarItem* tabItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:image tag:0];
     self.tabBarItem = tabItem;
     
