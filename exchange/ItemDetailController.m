@@ -13,8 +13,8 @@
 @interface ItemDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ageAndOwnerLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *itemImage;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (strong, nonatomic) ExchangeItem* item;
 @end
 
@@ -32,11 +32,11 @@
     // Do any additional setup after loading the view from its nib.
     self.nameLabel.text = self.item.name;
     self.descriptionLabel.text = self.item.description;
-//    if (self.item.imageUrl) {
-//        [self.itemImage setImageWithURL: [NSURL URLWithString:self.item.imageUrl]];
-//    }
+    if (self.item.imageUrl) {
+        [self.itemImageView setImageWithURL: [NSURL URLWithString:self.item.imageUrl]];
+    }
 //    else{
-//        [self.itemImage setImageWithURL: [NSURL URLWithString:@"http://tctechcrunch2011.files.wordpress.com/2013/09/yahoo-day-2.jpg?w=1000&h=624"]];
+//        [self.itemImage setImage:[[UIImage alloc] initWithContentsOfFile:@"love-is-give-and-take-pugs"]];
 //    }
     
     NSTimeInterval elapsedTimeInterval = [self.item.createdAt timeIntervalSinceNow];
