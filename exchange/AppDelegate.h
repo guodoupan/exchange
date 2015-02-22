@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#import "PostViewController.h"
+#import "ProfileViewController.h"
 #import "Constants.h"
 #import <Parse/Parse.h>
 

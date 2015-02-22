@@ -8,8 +8,9 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <UITabBarControllerDelegate>
 
+@property (nonatomic, strong) UIViewController *postVc;
 @end
 
 @implementation AppDelegate
@@ -27,15 +28,40 @@
     UIViewController * vc;
     if (user == nil) {
         vc = [[LoginViewController alloc] init];
+        self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     } else {
-        vc = [[HomeViewController alloc] init];
+        //vc = [[HomeViewController alloc] init];
+        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+        
+        
+        HomeViewController* vc1 = [[HomeViewController alloc] init];
+        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc1];
+        self.postVc = [[PostViewController alloc] init];
+        ProfileViewController *vc3 = [[ProfileViewController alloc] init];
+        
+        NSArray* controllers = [NSArray arrayWithObjects:nvc, self.postVc, vc3, nil];
+        tabBarController.viewControllers = controllers;
+        tabBarController.delegate = self;
+        self.window.rootViewController = tabBarController;
     }
    
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
+   
     [self.window makeKeyAndVisible];
     
 
     return YES;
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if (viewController == self.postVc) {
+//        viewController.modalPresentationStyle = UIModalPresentationFormSheet;
+//        viewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//        [tabBarController presentViewController:viewController animated:YES completion:nil];
+//        NSLog(@"post");
+        return YES;
+    }
+    return YES;
+    
 }
 
 - (void)userDidLogout {

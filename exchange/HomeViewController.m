@@ -22,11 +22,10 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Exchange";
-        UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStyleBordered target:self action:@selector(onLogout:)];
-        self.navigationItem.leftBarButtonItem = logoutButton;
-        
-        UIBarButtonItem *postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStyleBordered target:self action:@selector(onPost:)];
-        self.navigationItem.rightBarButtonItem = postButton;
+        UIImage *image = [UIImage imageNamed:@"search"];
+        UITabBarItem* tabItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:image tag:0];
+
+        self.tabBarItem = tabItem;
     }
     return self;
 }
@@ -40,6 +39,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self loadData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:DidUploadItemNotificationKey object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,10 +69,11 @@
 
 - (void)loadData {
     PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
+    [query orderByDescending:@"updatedAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %ld items.", objects.count);
+            NSLog(@"Successfully retrieved %d items.", objects.count);
             // Do something with the found objects
             self.dataArray = [ExchangeItem exchangeItemsWithArray:objects];
             [self.tableView reloadData];

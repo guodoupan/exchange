@@ -16,6 +16,17 @@
 
 @implementation PostViewController
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        UIImage *image = [UIImage imageNamed:@"add"];
+        UITabBarItem* tabItem = [[UITabBarItem alloc] initWithTitle:@"Post" image:image tag:0];
+        
+        self.tabBarItem = tabItem;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -38,7 +49,8 @@
     [[item pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"post success");
-            [self.navigationController popViewControllerAnimated:YES];
+            [[NSNotificationCenter defaultCenter] postNotificationName:DidUploadItemNotificationKey object:nil];
+            [self.tabBarController setSelectedIndex:0];
         } else {
             NSLog(@"post failed");
         }

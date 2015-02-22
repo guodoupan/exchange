@@ -8,16 +8,32 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Pods-exchange-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Pods-exchange.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Pods-exchangeTests-AFNetworking.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>Pods-exchangeTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -27,12 +43,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6653E761795A00C8B32A6FE5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A1A64B43881BFBB1178D007A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D05987F4CD054C1F9722FD1D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>EAF1CE5DE18657F0E93BEBAF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>EB5B34DAF817A4B87EAE175F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EEE0670B9DB3067B11CC2390</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF0E46F25513D7BD895A8947</key>
 		<dict>
 			<key>primary</key>
 			<true/>
