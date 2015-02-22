@@ -8,5 +8,7 @@ end
 
 target 'exchangeTests' do
 
+pod 'AFNetworking'
+
 end
 

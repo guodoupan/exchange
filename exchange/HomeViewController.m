@@ -7,6 +7,7 @@
 //
 
 #import "HomeViewController.h"
+#import "ItemDetailController.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -62,7 +63,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    ItemDetailController *dvc = [[ItemDetailController alloc] initWithItem:self.dataArray[indexPath.row]];
+    [self.navigationController pushViewController:dvc animated:YES];
 }
 
 - (void)loadData {
