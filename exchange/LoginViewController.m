@@ -11,6 +11,7 @@
 @interface LoginViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextfield;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 
 @end
 
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     self.passwordTextfield.delegate = self;
     self.passwordTextfield.secureTextEntry = YES;
+    [self.nameTextField becomeFirstResponder];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -62,6 +64,7 @@
     PFUser *user = [PFUser user];
     user.username = self.nameTextField.text;
     user.password = self.passwordTextfield.text;
+    user.email = self.emailTextField.text;
     
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
