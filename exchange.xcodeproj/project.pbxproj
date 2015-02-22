@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0F0159991A9A50E200B5FCB0 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F0159971A9A50E200B5FCB0 /* ProfileViewController.m */; };
 		0F01599A1A9A50E200B5FCB0 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0159981A9A50E200B5FCB0 /* ProfileViewController.xib */; };
+		0F01599D1A9A670C00B5FCB0 /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F01599C1A9A670C00B5FCB0 /* ProfileHeaderView.m */; };
+		0F01599F1A9A674800B5FCB0 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F01599E1A9A674800B5FCB0 /* ProfileHeaderView.xib */; };
 		0F4139161A97804700AF7B2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139151A97804700AF7B2F /* main.m */; };
 		0F4139191A97804700AF7B2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139181A97804700AF7B2F /* AppDelegate.m */; };
 		0F4139211A97804700AF7B2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4139201A97804700AF7B2F /* Images.xcassets */; };
@@ -42,6 +44,9 @@
 		0F0159961A9A50E200B5FCB0 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		0F0159971A9A50E200B5FCB0 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		0F0159981A9A50E200B5FCB0 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		0F01599B1A9A670C00B5FCB0 /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderView.h; sourceTree = "<group>"; };
+		0F01599C1A9A670C00B5FCB0 /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderView.m; sourceTree = "<group>"; };
+		0F01599E1A9A674800B5FCB0 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
 		0F4139101A97804700AF7B2F /* exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4139141A97804700AF7B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F4139151A97804700AF7B2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -171,6 +176,9 @@
 		0F41393A1A97883D00AF7B2F /* views */ = {
 			isa = PBXGroup;
 			children = (
+				0F01599B1A9A670C00B5FCB0 /* ProfileHeaderView.h */,
+				0F01599C1A9A670C00B5FCB0 /* ProfileHeaderView.m */,
+				0F01599E1A9A674800B5FCB0 /* ProfileHeaderView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -304,6 +312,7 @@
 				0F01599A1A9A50E200B5FCB0 /* ProfileViewController.xib in Resources */,
 				0F4139241A97804700AF7B2F /* LaunchScreen.xib in Resources */,
 				0F4139211A97804700AF7B2F /* Images.xcassets in Resources */,
+				0F01599F1A9A674800B5FCB0 /* ProfileHeaderView.xib in Resources */,
 				0F4139401A97886200AF7B2F /* LoginViewController.xib in Resources */,
 				5CDB9B251A99BEE80032F3A5 /* ItemDetailController.xib in Resources */,
 				0F4139481A978CEE00AF7B2F /* HomeViewController.xib in Resources */,
@@ -397,6 +406,7 @@
 				0F4139471A978CEE00AF7B2F /* HomeViewController.m in Sources */,
 				0F41394E1A9791EA00AF7B2F /* ExchangeItem.m in Sources */,
 				5CDB9B241A99BEE80032F3A5 /* ItemDetailController.m in Sources */,
+				0F01599D1A9A670C00B5FCB0 /* ProfileHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

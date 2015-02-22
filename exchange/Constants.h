@@ -10,6 +10,7 @@
 
 @interface Constants : NSObject
 
+extern NSString *const DidLoginNotificationKey;
 extern NSString *const DidLogoutNotificationKey;
 extern NSString *const DidUploadItemNotificationKey;
 extern NSString *const ParseAppId;

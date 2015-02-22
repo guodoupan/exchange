@@ -77,8 +77,7 @@
 }
 
 - (void)openHome {
-    HomeViewController *vc = [[HomeViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DidLoginNotificationKey object:nil];
 }
 /*
 #pragma mark - Navigation

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileHeaderView.h"
+#import "Constants.h"
 
 @interface ProfileViewController : UIViewController
 

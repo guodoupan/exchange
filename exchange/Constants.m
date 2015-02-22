@@ -10,6 +10,7 @@
 
 @implementation Constants
 
+NSString *const DidLoginNotificationKey = @"DidLogin";
 NSString *const DidLogoutNotificationKey = @"DidLogout";
 NSString *const DidUploadItemNotificationKey = @"DidUpload";
 NSString *const ParseAppId = @"aaLzWbeOa3M9BJxjwMDRdWkv9S5UKzTSGlK2wXqU";

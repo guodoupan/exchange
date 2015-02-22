@@ -8,7 +8,8 @@
 
 #import "ProfileViewController.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, ProfileHeaderViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -27,7 +28,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    
+    ProfileHeaderView *headerView = [ProfileHeaderView profileHeader];
+    headerView.delegate = self;
+    [headerView setUser: [PFUser currentUser]];
+    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,14 +43,36 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%d", indexPath.row];
+    return cell;
 }
-*/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 100;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        [PFUser logOut];
+        [[NSNotificationCenter defaultCenter] postNotificationName:DidLogoutNotificationKey object:nil];
+    } else if (buttonIndex == 1) {
+        NSLog(@"Change icon");
+    }
+}
+
+- (void)onSetting {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Change icon", nil];
+    [actionSheet showInView:self.view];
+}
+
 
 @end

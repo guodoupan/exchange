@@ -19,6 +19,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogin) name:DidLoginNotificationKey object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidLogout) name:DidLogoutNotificationKey object:nil];
     
     [Parse setApplicationId:ParseAppId clientKey:ParseClientKey];
@@ -30,19 +31,7 @@
         vc = [[LoginViewController alloc] init];
         self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     } else {
-        //vc = [[HomeViewController alloc] init];
-        UITabBarController *tabBarController = [[UITabBarController alloc] init];
-        
-        
-        HomeViewController* vc1 = [[HomeViewController alloc] init];
-        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc1];
-        self.postVc = [[PostViewController alloc] init];
-        ProfileViewController *vc3 = [[ProfileViewController alloc] init];
-        
-        NSArray* controllers = [NSArray arrayWithObjects:nvc, self.postVc, vc3, nil];
-        tabBarController.viewControllers = controllers;
-        tabBarController.delegate = self;
-        self.window.rootViewController = tabBarController;
+        [self userDidLogin];
     }
    
    
@@ -50,6 +39,19 @@
     
 
     return YES;
+}
+
+- (void)userDidLogin {
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    HomeViewController* vc1 = [[HomeViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc1];
+    self.postVc = [[PostViewController alloc] init];
+    ProfileViewController *vc3 = [[ProfileViewController alloc] init];
+    
+    NSArray* controllers = [NSArray arrayWithObjects:nvc, self.postVc, vc3, nil];
+    tabBarController.viewControllers = controllers;
+    tabBarController.delegate = self;
+    self.window.rootViewController = tabBarController;
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
