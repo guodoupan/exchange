@@ -9,10 +9,11 @@
 #import "HomeViewController.h"
 #import "ItemDetailController.h"
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIView *titleView;
 
 @end
 
@@ -21,11 +22,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Exchange";
-        UIImage *image = [UIImage imageNamed:@"search"];
-        UITabBarItem* tabItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:image tag:0];
-
-        self.tabBarItem = tabItem;
+        [self showDefaultTitle];
     }
     return self;
 }
@@ -34,12 +31,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(loadDefaultData) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self loadData];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:DidUploadItemNotificationKey object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDefaultData) name:DidUploadItemNotificationKey object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,9 +64,45 @@
     [self.navigationController pushViewController:dvc animated:YES];
 }
 
-- (void)loadData {
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSString *searchTerm = searchBar.text;
+    [self loadData:searchTerm];
+}
+
+- (void)onRightButton {
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 100, CGRectGetHeight(self.navigationItem.titleView.frame))];
+    searchBar.delegate = self;
+    self.navigationItem.titleView = searchBar;
+    [searchBar becomeFirstResponder];
+    
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(showDefaultTitle)];
+    self.navigationItem.rightBarButtonItem = cancelButton;
+}
+
+- (void)showDefaultTitle {
+    self.title = @"Exchange";
+    UIImage *image = [UIImage imageNamed:@"search"];
+    UITabBarItem* tabItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:image tag:0];
+    self.tabBarItem = tabItem;
+    
+    UIImage *searchImage = [UIImage imageNamed:@"search"];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:searchImage style:UIBarButtonItemStyleDone target:self action:@selector(onRightButton)];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    self.navigationItem.titleView = self.titleView;
+    
+    [self loadDefaultData];
+}
+
+- (void)loadDefaultData {
+    [self loadData:nil];
+}
+
+- (void)loadData: (NSString *)keyword{
     PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
     [query orderByDescending:@"updatedAt"];
+    if (keyword != nil) {
+        [query whereKey:@"name" containsString:keyword];
+    }
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
