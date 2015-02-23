@@ -8,9 +8,16 @@
 
 #import "PostViewController.h"
 
-@interface PostViewController ()
+NSString * const PlaceHolder = @"Write your item's description ...";
+
+@interface PostViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *descTextField;
+@property (weak, nonatomic) IBOutlet UITextField *typeTextField;
+@property (weak, nonatomic) IBOutlet UITextView *descTextView;
+@property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
+
+@property (strong, nonatomic) UIImage *itemImage;
+- (void)onImageTap: (UITapGestureRecognizer *)tapGestureRecognizer;
 
 @end
 
@@ -30,21 +37,104 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    // Added tap gesture
+    [self.itemImageView setUserInteractionEnabled:YES];
+    self.itemImageView.layer.cornerRadius = 10;
+    self.itemImageView.clipsToBounds = YES;
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onImageTap:)];
+    tapGestureRecognizer.numberOfTapsRequired = 1;
+    [self.itemImageView addGestureRecognizer:tapGestureRecognizer];
+    
+    // Settings for text view
+    self.descTextView.delegate = self;
+    self.descTextView.text = PlaceHolder;
+    self.descTextView.textColor = [UIColor lightGrayColor];
 }
+
+- (void)onImageTap: (UITapGestureRecognizer *)tapGestureRecognizer {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]initWithTitle:@"Give a Picture to Your Item!" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Pick a Picture from Library", @"Take a new Picture", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self onTakePicture:buttonIndex];
+}
+
+#pragma - text view settings
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:PlaceHolder]) {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = PlaceHolder;
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
+}
+
+#pragma - image picker actions
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    self.itemImageView.image = chosenImage;
+    [self setItemImage:chosenImage];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)onTakePicture: (NSInteger)index {
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES;
+    if (index == 0) {
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:picker animated:YES completion:NULL];
+    } else if (index == 1 && [self checkCameraAvailability]) {
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        [self presentViewController:picker animated:YES completion:NULL];
+    }
+}
+
+- (BOOL)checkCameraAvailability {
+    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"Device has no camera"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles: nil];
+        [myAlertView show];
+        return false;
+    }
+    return true;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)onPost:(id)sender {
     ExchangeItem *item = [[ExchangeItem alloc] init];
     item.name = self.nameTextField.text;
-    item.desc = self.descTextField.text;
-    //TODO use the proper values
-    item.imageUrl = @"image url";
-    item.type = 1;
+    item.type = [self.typeTextField.text integerValue];
+    item.desc = self.descTextView.text;
     item.status = ItemUploaded;
     item.userId = [[PFUser currentUser] objectId];
+    
+    // Save image file
+    PFFile *imageFile = [PFFile fileWithData:UIImagePNGRepresentation(self.itemImage)];
+    item.imageFile = imageFile;
     
     [[item pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
@@ -56,15 +146,5 @@
         }
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
