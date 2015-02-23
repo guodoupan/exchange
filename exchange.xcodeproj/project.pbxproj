@@ -24,6 +24,8 @@
 		0F41394E1A9791EA00AF7B2F /* ExchangeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F41394D1A9791EA00AF7B2F /* ExchangeItem.m */; };
 		0F4139521A9796B700AF7B2F /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139501A9796B700AF7B2F /* PostViewController.m */; };
 		0F4139531A9796B700AF7B2F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F4139511A9796B700AF7B2F /* PostViewController.xib */; };
+		0FA05A5B1A9AA1CE0052CC94 /* ExchangeItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA05A591A9AA1CE0052CC94 /* ExchangeItemCell.m */; };
+		0FA05A5C1A9AA1CE0052CC94 /* ExchangeItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA05A5A1A9AA1CE0052CC94 /* ExchangeItemCell.xib */; };
 		28F20632A39BC41185EC8218 /* libPods-exchangeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1671F0FD78298228B97663 /* libPods-exchangeTests.a */; };
 		5C05608B1A9B07FE004EE6EF /* ItemCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0560891A9B07FE004EE6EF /* ItemCellTableViewCell.m */; };
 		5C05608C1A9B07FE004EE6EF /* ItemCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C05608A1A9B07FE004EE6EF /* ItemCellTableViewCell.xib */; };
@@ -74,6 +76,9 @@
 		0F41394F1A9796B700AF7B2F /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		0F4139501A9796B700AF7B2F /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		0F4139511A9796B700AF7B2F /* PostViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostViewController.xib; sourceTree = "<group>"; };
+		0FA05A581A9AA1CE0052CC94 /* ExchangeItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItemCell.h; sourceTree = "<group>"; };
+		0FA05A591A9AA1CE0052CC94 /* ExchangeItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItemCell.m; sourceTree = "<group>"; };
+		0FA05A5A1A9AA1CE0052CC94 /* ExchangeItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeItemCell.xib; sourceTree = "<group>"; };
 		13197BD78D9A67FC13DCB48C /* libPods-exchange.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-exchange.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491FD95B3D666630D2AA27C1 /* Pods-exchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-exchange/Pods-exchange.release.xcconfig"; sourceTree = "<group>"; };
 		4ABC26227CD35649CDFCF4C6 /* Pods-exchangeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exchangeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-exchangeTests/Pods-exchangeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +197,9 @@
 				5C0560881A9B07FE004EE6EF /* ItemCellTableViewCell.h */,
 				5C0560891A9B07FE004EE6EF /* ItemCellTableViewCell.m */,
 				5C05608A1A9B07FE004EE6EF /* ItemCellTableViewCell.xib */,
+				0FA05A581A9AA1CE0052CC94 /* ExchangeItemCell.h */,
+				0FA05A591A9AA1CE0052CC94 /* ExchangeItemCell.m */,
+				0FA05A5A1A9AA1CE0052CC94 /* ExchangeItemCell.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -331,6 +339,7 @@
 				5C0560911A9B0DD4004EE6EF /* ExchangeViewController.xib in Resources */,
 				0F01599F1A9A674800B5FCB0 /* ProfileHeaderView.xib in Resources */,
 				0F4139401A97886200AF7B2F /* LoginViewController.xib in Resources */,
+				0FA05A5C1A9AA1CE0052CC94 /* ExchangeItemCell.xib in Resources */,
 				5CDB9B251A99BEE80032F3A5 /* ItemDetailController.xib in Resources */,
 				0F4139481A978CEE00AF7B2F /* HomeViewController.xib in Resources */,
 				5C05608C1A9B07FE004EE6EF /* ItemCellTableViewCell.xib in Resources */,
@@ -425,6 +434,7 @@
 				0F41393F1A97886200AF7B2F /* LoginViewController.m in Sources */,
 				0F4139471A978CEE00AF7B2F /* HomeViewController.m in Sources */,
 				0F41394E1A9791EA00AF7B2F /* ExchangeItem.m in Sources */,
+				0FA05A5B1A9AA1CE0052CC94 /* ExchangeItemCell.m in Sources */,
 				5CDB9B241A99BEE80032F3A5 /* ItemDetailController.m in Sources */,
 				0F01599D1A9A670C00B5FCB0 /* ProfileHeaderView.m in Sources */,
 			);

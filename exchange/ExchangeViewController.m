@@ -23,7 +23,7 @@
     if(self = [super init]){
         PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
         [query orderByDescending:@"updatedAt"];
-        [query whereKey:@"userId" containsString: [@(userId) stringValue]];
+        [query whereKey:@"userid" containsString: [[PFUser currentUser] objectId]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 // The find succeeded.

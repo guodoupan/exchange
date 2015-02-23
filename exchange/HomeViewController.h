@@ -10,7 +10,10 @@
 #import <Parse/Parse.h>
 #import "Constants.h"
 #import "PostViewController.h"
+#import "ExchangeItemCell.h"
 
 @interface HomeViewController : UIViewController
+
+@property (nonatomic, strong) ExchangeItemCell *protoTypeCell;
 
 @end

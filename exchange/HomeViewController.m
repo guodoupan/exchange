@@ -27,6 +27,13 @@
     return self;
 }
 
+- (ExchangeItemCell *)protoTypeCell {
+    if (!_protoTypeCell) {
+        _protoTypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"ExchangeItemCell"];
+    }
+    return _protoTypeCell;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -35,6 +42,7 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+     [self.tableView registerNib:[UINib nibWithNibName:@"ExchangeItemCell" bundle:nil] forCellReuseIdentifier:@"ExchangeItemCell"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDefaultData) name:DidUploadItemNotificationKey object:nil];
 }
@@ -44,14 +52,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.protoTypeCell.item = self.dataArray[indexPath.row];
+    [self.protoTypeCell layoutIfNeeded];
+    
+    CGSize size = [self.protoTypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
-    }
+    ExchangeItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExchangeItemCell"];
     ExchangeItem *item = self.dataArray[indexPath.row];
-    cell.textLabel.text = item.name;
-    cell.detailTextLabel.text = item.desc;
+    cell.item = item;
     return cell;
 }
 
@@ -60,6 +72,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     ItemDetailController *dvc = [[ItemDetailController alloc] initWithItem:self.dataArray[indexPath.row]];
     [self.navigationController pushViewController:dvc animated:YES];
 }
