@@ -1,38 +1,38 @@
 //
-//  ItemDetailController.m
+//  ItemCellTableViewCell.m
 //  exchange
 //
-//  Created by Nadav Golbandi on 2/21/15.
+//  Created by Nadav Golbandi on 2/22/15.
 //  Copyright (c) 2015 Doupan Guo. All rights reserved.
 //
 
-#import "ItemDetailController.h"
-#import "UIImageView+AFNetworking.h"
-#import "ExchangeViewController.h"
+#import "ItemCellTableViewCell.h"
 
-@interface ItemDetailController ()
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *ageAndOwnerLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@interface ItemCellTableViewCell()
+
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
-@property (weak, nonatomic) IBOutlet UITextView *itemDescTextView;
-@property (strong, nonatomic) ExchangeItem* item;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *userAndTimeLabel;
+
+@property (weak, nonatomic) IBOutlet UISwitch *exchangeSelector;
+
 @end
 
-@implementation ItemDetailController
+@implementation ItemCellTableViewCell
 
--(id) initWithItem:(ExchangeItem*) item{
-    if (self = [super init]) {
-        self.item = item;
-    }
-    return self;
+- (void)awakeFromNib {
+    // Initialization code
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+- (void) setItem:(ExchangeItem *)item{
+    _item = item;
     self.nameLabel.text = self.item.name;
-    self.itemDescTextView.text = self.item.desc;
     
     if (self.item.imageFile) {
         [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
@@ -71,23 +71,22 @@
         formattedDateString = [NSString stringWithFormat:@"in %dyr", years];
     }
     
-    self.ageAndOwnerLabel.text = [NSString stringWithFormat:@"Published by %@ %@",self.item.userId, formattedDateString];
+    self.userAndTimeLabel.text = [NSString stringWithFormat:@"Published by %@ %@",self.item.userId, formattedDateString];
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) setOn:(BOOL)on{
+    [self setOn:on animated:NO];
 }
 
-- (IBAction)onExchange:(id)sender {
-    NSLog(@"On Exchange");
-    // getting the user active items
-    ExchangeViewController *evc = [[ExchangeViewController alloc] initForUser:self.item.userId];
-    [self.navigationController pushViewController:evc animated:YES];
+-(void) setOn:(BOOL)on animated:(BOOL) animated{
+    _on = on;
+    [self.exchangeSelector setOn:on animated:animated];
 }
 
-- (NSArray*) fetchUserItems:(NSInteger) userId{
-    return [NSArray array];
+- (IBAction)switchValueChanged:(id)sender {
+    [self.delegate ItemCellTableViewCell:self didUpdateValue:self.exchangeSelector.on];
 }
+
 
 @end
