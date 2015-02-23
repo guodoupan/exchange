@@ -4,11 +4,12 @@
 target 'exchange' do
 source 'https://github.com/CocoaPods/Specs.git'
 pod 'Parse'
+pod 'IQKeyboardManager'
+
 end
 
 target 'exchangeTests' do
 
 pod 'AFNetworking'
-
 end
 
