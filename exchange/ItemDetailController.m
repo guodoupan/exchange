@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *ageAndOwnerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
+@property (weak, nonatomic) IBOutlet UITextView *itemDescTextView;
 @property (strong, nonatomic) ExchangeItem* item;
 @end
 
@@ -31,13 +32,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.nameLabel.text = self.item.name;
-    self.descriptionLabel.text = self.item.description;
-    if (self.item.imageUrl) {
-        [self.itemImageView setImageWithURL: [NSURL URLWithString:self.item.imageUrl]];
+    self.itemDescTextView.text = self.item.desc;
+    
+    if (self.item.imageFile) {
+        [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                [self.itemImageView setImage:image];
+            }
+        }];
+    } else {
+        // Image placeholder for non-image case
+        [self.itemImageView setImage:[UIImage imageNamed:@"picColored"]];
     }
-//    else{
-//        [self.itemImage setImage:[[UIImage alloc] initWithContentsOfFile:@"love-is-give-and-take-pugs"]];
-//    }
     
     NSTimeInterval elapsedTimeInterval = [self.item.createdAt timeIntervalSinceNow];
     int elapsedSeconds = (int)(elapsedTimeInterval * -1);
@@ -75,15 +82,5 @@
 - (IBAction)onExchange:(id)sender {
     NSLog(@"On Exchange");
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

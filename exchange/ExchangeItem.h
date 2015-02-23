@@ -14,12 +14,12 @@
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *desc;
-@property (nonatomic, strong) NSString *imageUrl;
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong) PFFile *imageFile;
 
 - (id)initWithPFObject: (PFObject *)object;
 + (NSArray *)exchangeItemsWithArray: (NSArray *)array;
