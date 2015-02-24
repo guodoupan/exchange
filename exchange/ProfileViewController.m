@@ -105,22 +105,27 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:DidLogoutNotificationKey object:nil];
     } else if (buttonIndex == 1) {
         NSLog(@"Change icon");
-        [self changeIcon];
+        [self changeIcon:@"Library"];
+    } else if (buttonIndex == 2) {
+        [self changeIcon:@"Camera"];
     }
 }
 
 - (void)onSetting {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Change icon", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Change Icon from Library", @"Take a New Profile Picture", nil];
     [actionSheet showInView:self.view];
 }
 
-- (void)changeIcon {
+- (void)changeIcon: (NSString *)sourceType {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     picker.allowsEditing = YES;
-    if ([self checkCameraAvailability]) {
+    if ([sourceType isEqualToString:@"Camera"] && [self checkCameraAvailability]) {
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         picker.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+        [self presentViewController:picker animated:YES completion:NULL];
+    } else if([sourceType isEqualToString:@"Library"]){
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentViewController:picker animated:YES completion:NULL];
     }
 }
@@ -128,31 +133,20 @@
 - (void)saveAvatar: (UIImage *)image {
     NSData *imageData = UIImagePNGRepresentation(image);
     PFFile *imageFile = [PFFile fileWithData:imageData];
-
-    PFQuery *query = [PFQuery queryWithClassName:@"UserAvatar"];
-    [query whereKey:@"userid" equalTo:[self.user objectId]];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (!error) {
-            object[@"imageFile"] = imageFile;
-            [object saveInBackground];
-        }
-    }];
+    
+    PFUser *user = [PFUser currentUser];
+    [user setObject:imageFile forKey:@"profilePic"];
+    [user saveInBackground];
 }
 
 - (void)loadAvatar {
-     PFQuery *query = [PFQuery queryWithClassName:@"UserAvatar"];
-    [query whereKey:@"userid" equalTo:[self.user objectId]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    // Actually we can save image inside the PFUser, no need for a new Class
+    PFUser *user = [PFUser currentUser];
+    PFFile *imageFile = user[@"profilePic"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
-            PFFile *imageFile = objects[0][@"imageFile"];
-            if (imageFile) {
-                [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                    if (!error) {
-                        UIImage *image = [UIImage imageWithData:data];
-                        [self.headerView setAvatar:image];
-                    }
-                }];
-            }
+            UIImage *image = [UIImage imageWithData:data];
+            [self.headerView setAvatar:image];
         }
     }];
 }
@@ -160,13 +154,12 @@
 
 #pragma - image picker actions
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *flippedImage = [UIImage imageWithCGImage:chosenImage.CGImage scale:chosenImage.scale orientation:UIImageOrientationLeftMirrored];
-
+    // Let's use the edited image which is square
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if (flippedImage != nil) {
-        [self.headerView setAvatar: flippedImage];
-        [self saveAvatar:flippedImage];
+    if (chosenImage != nil) {
+        [self.headerView setAvatar: chosenImage];
+        [self saveAvatar:chosenImage];
     }
 }
 
