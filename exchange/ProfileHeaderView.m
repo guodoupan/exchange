@@ -32,6 +32,11 @@
     self.currentUser = user;
     self.nameLabel.text = user.username;
 }
+
+- (void)setAvatar:(UIImage *)image {
+    self.avatarImage.image = image;
+}
+
 - (IBAction)onSetting:(id)sender {
     [self.delegate onSetting];
 }

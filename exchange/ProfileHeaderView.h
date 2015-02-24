@@ -24,4 +24,5 @@
 + (id)profileHeader;
 
 - (void)setUser: (PFUser *)user;
+- (void)setAvatar: (UIImage *)image;
 @end
