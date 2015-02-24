@@ -11,8 +11,11 @@
 #import "ProfileHeaderView.h"
 #import "Constants.h"
 #import "ExchangeItem.h"
+#import "ItemCellTableViewCell.h"
 
 @interface ProfileViewController : UIViewController
 
 @property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) ItemCellTableViewCell *protoTypeCell;
+
 @end
