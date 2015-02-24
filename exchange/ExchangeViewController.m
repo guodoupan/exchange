@@ -9,12 +9,14 @@
 #import "ExchangeViewController.h"
 #import "ItemCellTableViewCell.h"
 
-@interface ExchangeViewController () <UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate>
+@interface ExchangeViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray* items;
 @property (strong, nonatomic) NSString* userName;
 @property (nonatomic, strong) ItemCellTableViewCell * prototypeCell;
-@property (nonatomic, assign) NSInteger selected;
+@property (nonatomic, strong) ItemCellTableViewCell* selected;
+@property (nonatomic, assign) NSInteger selectedRow;
+
 @end
 
 @implementation ExchangeViewController
@@ -36,7 +38,15 @@
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
         }];    }
+    self.selected = nil;
     return self;
+}
+
+- (ItemCellTableViewCell *)protoTypeCell {
+    if (!_protoTypeCell) {
+        _protoTypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
+    }
+    return _protoTypeCell;
 }
 
 
@@ -49,11 +59,10 @@
     //update the view controller about the castom cell
     [self.tableView registerNib:[UINib nibWithNibName:@"ItemCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"ItemCellTableViewCell"];
     
-    //dynamic raw cell high dimension
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.title = @"Select an Item 4 Exchange";
     
-    self.title = @"Exchange";
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancle" style:UIBarButtonItemStylePlain target:self action:@selector(onCancleButton)];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +71,11 @@
 }
 
 
+- (void) onCancleButton {
+    [self.navigationController popViewControllerAnimated:TRUE];
+    self.selected = nil;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.items.count;
 }
@@ -69,24 +83,32 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ItemCellTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
     cell.item = self.items[indexPath.row];
+    [cell selectionImageHidden:YES];
+    if(indexPath.row == self.selectedRow){
+        [self.selected selectionImageHiddenSwitch];
+    }
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.prototypeCell layoutIfNeeded];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ItemCellTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    if(self.selected && self.selected!=cell){
+        [self.selected selectionImageHiddenSwitch];
+    }
+    self.selected = cell;
+    self.selectedRow = indexPath.row;
+    [self.selected selectionImageHiddenSwitch];
+    //The actual query that set the transaction entry should be implemented.
     
-    CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height+1;
 }
 
-- (ItemCellTableViewCell *)prototypeCell
-{
-    if (!_prototypeCell)
-    {
-        _prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
-    }
-    return _prototypeCell;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.protoTypeCell.item = self.items[indexPath.row];
+    [self.protoTypeCell layoutIfNeeded];
+    
+    CGSize size = [self.protoTypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1;
 }
 
 /*
@@ -98,13 +120,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
--(void) ItemCellTableViewCell:(ItemCellTableViewCell *)cell didUpdateValue:(BOOL)value{
-    NSIndexPath* indexPath = [self.tableView indexPathForCell:cell];
-    //if the categoy selected I would like to add it to the set
-    self.selected = indexPath.row;
-}
-
-
 
 @end

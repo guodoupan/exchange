@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemCellTableViewCell.h"
 
 @interface ExchangeViewController : UIViewController
 
 -(id) initForUser:(NSInteger) userId;
+@property (nonatomic, strong) ItemCellTableViewCell *protoTypeCell;
 
 @end

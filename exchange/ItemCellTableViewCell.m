@@ -12,9 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *userAndTimeLabel;
-
-@property (weak, nonatomic) IBOutlet UISwitch *exchangeSelector;
+@property (weak, nonatomic) IBOutlet UIImageView *selectionImageView;
 
 @end
 
@@ -45,48 +43,14 @@
         // Image placeholder for non-image case
         [self.itemImageView setImage:[UIImage imageNamed:@"picColored"]];
     }
-    
-    NSTimeInterval elapsedTimeInterval = [self.item.createdAt timeIntervalSinceNow];
-    int elapsedSeconds = (int)(elapsedTimeInterval * -1);
-    
-    NSLog(@"%d", elapsedSeconds);
-    NSString* formattedDateString;
-    if (elapsedSeconds < 60) {
-        formattedDateString = @"just now";
-    }
-    else if (elapsedSeconds < 3600) {
-        int minutes = elapsedSeconds / 60;
-        formattedDateString = [NSString stringWithFormat:@"in %dm", minutes];
-    }
-    else if (elapsedSeconds < 86400) {
-        int hours = elapsedSeconds / 3600;
-        formattedDateString = [NSString stringWithFormat:@"in %dh", hours];
-    }
-    else if (elapsedSeconds < 31536000) {
-        int days = elapsedSeconds / 86400;
-        formattedDateString = [NSString stringWithFormat:@"in %dd", days];
-    }
-    else {
-        int years = elapsedSeconds / 31536000;
-        formattedDateString = [NSString stringWithFormat:@"in %dyr", years];
-    }
-    
-    self.userAndTimeLabel.text = [NSString stringWithFormat:@"Published by %@ %@",self.item.userId, formattedDateString];
-
 }
 
--(void) setOn:(BOOL)on{
-    [self setOn:on animated:NO];
+- (void) selectionImageHiddenSwitch{
+    BOOL hiddenState = ![self.selectionImageView isHidden];
+    [self.selectionImageView setHidden:hiddenState];
 }
 
--(void) setOn:(BOOL)on animated:(BOOL) animated{
-    _on = on;
-    [self.exchangeSelector setOn:on animated:animated];
+- (void) selectionImageHidden:(BOOL)hidden{
+    [self.selectionImageView setHidden:hidden];
 }
-
-- (IBAction)switchValueChanged:(id)sender {
-    [self.delegate ItemCellTableViewCell:self didUpdateValue:self.exchangeSelector.on];
-}
-
-
 @end

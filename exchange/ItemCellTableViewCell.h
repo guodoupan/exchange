@@ -11,19 +11,8 @@
 
 @class ItemCellTableViewCell;
 
-
-@protocol SwitchCellDelegate <NSObject>
-
-- (void) ItemCellTableViewCell: (ItemCellTableViewCell*) cell didUpdateValue:(BOOL)value;
-
-@end
-
 @interface ItemCellTableViewCell : UITableViewCell
 @property(nonatomic, strong) ExchangeItem* item;
-
-@property (nonatomic, assign) BOOL on;
-@property (weak, nonatomic) id<SwitchCellDelegate> delegate;
-
--(void) setOn:(BOOL)on animated:(BOOL) animated;
-
+- (void) selectionImageHiddenSwitch;
+- (void) selectionImageHidden:(BOOL)hidden;
 @end
