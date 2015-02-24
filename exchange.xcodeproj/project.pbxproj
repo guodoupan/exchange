@@ -26,6 +26,7 @@
 		0F4139531A9796B700AF7B2F /* PostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F4139511A9796B700AF7B2F /* PostViewController.xib */; };
 		0FA05A5B1A9AA1CE0052CC94 /* ExchangeItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FA05A591A9AA1CE0052CC94 /* ExchangeItemCell.m */; };
 		0FA05A5C1A9AA1CE0052CC94 /* ExchangeItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FA05A5A1A9AA1CE0052CC94 /* ExchangeItemCell.xib */; };
+		0FDFEE2E1A9CD76700F79638 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 0FDFEE2D1A9CD76700F79638 /* Transaction.m */; };
 		28F20632A39BC41185EC8218 /* libPods-exchangeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E1671F0FD78298228B97663 /* libPods-exchangeTests.a */; };
 		5C05608B1A9B07FE004EE6EF /* ItemCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0560891A9B07FE004EE6EF /* ItemCellTableViewCell.m */; };
 		5C05608C1A9B07FE004EE6EF /* ItemCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C05608A1A9B07FE004EE6EF /* ItemCellTableViewCell.xib */; };
@@ -79,6 +80,8 @@
 		0FA05A581A9AA1CE0052CC94 /* ExchangeItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExchangeItemCell.h; sourceTree = "<group>"; };
 		0FA05A591A9AA1CE0052CC94 /* ExchangeItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExchangeItemCell.m; sourceTree = "<group>"; };
 		0FA05A5A1A9AA1CE0052CC94 /* ExchangeItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExchangeItemCell.xib; sourceTree = "<group>"; };
+		0FDFEE2C1A9CD76700F79638 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		0FDFEE2D1A9CD76700F79638 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		13197BD78D9A67FC13DCB48C /* libPods-exchange.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-exchange.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		491FD95B3D666630D2AA27C1 /* Pods-exchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-exchange/Pods-exchange.release.xcconfig"; sourceTree = "<group>"; };
 		4ABC26227CD35649CDFCF4C6 /* Pods-exchangeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exchangeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-exchangeTests/Pods-exchangeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				0F41394A1A978FB300AF7B2F /* Constants.m */,
 				0F41394C1A9791EA00AF7B2F /* ExchangeItem.h */,
 				0F41394D1A9791EA00AF7B2F /* ExchangeItem.m */,
+				0FDFEE2C1A9CD76700F79638 /* Transaction.h */,
+				0FDFEE2D1A9CD76700F79638 /* Transaction.m */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FDFEE2E1A9CD76700F79638 /* Transaction.m in Sources */,
 				0F4139521A9796B700AF7B2F /* PostViewController.m in Sources */,
 				5C0560901A9B0DD4004EE6EF /* ExchangeViewController.m in Sources */,
 				0F0159991A9A50E200B5FCB0 /* ProfileViewController.m in Sources */,

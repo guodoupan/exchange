@@ -61,7 +61,7 @@
     
     self.title = @"Select an Item 4 Exchange";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancleButton)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onDoneButton)];
 
 }
 
@@ -71,8 +71,21 @@
 }
 
 
-- (void) onCancleButton {
-    [self.navigationController popViewControllerAnimated:TRUE];
+- (void) onDoneButton {
+    NSLog(@"requesting: %@, requested:%@", self.requestingItem.name, self.selected.item.name);
+    
+    Transaction *transaction = [[Transaction alloc] init];
+    transaction.requestingItemId = self.requestingItem.objectId;
+    transaction.requestedItemId = self.selected.item.objectId;
+    transaction.status = TransactionRequesting;
+    [[transaction pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            NSLog(@"transaction success");
+            [self.navigationController popViewControllerAnimated:TRUE];
+        } else {
+            NSLog(@"transaction failed: %@", error);
+        }
+    }];
     self.selected = nil;
 }
 

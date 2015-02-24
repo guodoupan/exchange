@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ItemCellTableViewCell.h"
+#import "Transaction.h"
+#import "Constants.h"
 
 @interface ExchangeViewController : UIViewController
 
 -(id) initForUser:(NSInteger) userId;
+@property (nonatomic, strong) ExchangeItem *requestingItem;
 @property (nonatomic, strong) ItemCellTableViewCell *protoTypeCell;
 
 @end
