@@ -42,6 +42,7 @@
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+
      [self.tableView registerNib:[UINib nibWithNibName:@"ExchangeItemCell" bundle:nil] forCellReuseIdentifier:@"ExchangeItemCell"];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadDefaultData) name:DidUploadItemNotificationKey object:nil];
@@ -60,9 +61,28 @@
     return size.height + 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewAutomaticDimension;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExchangeItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExchangeItemCell"];
     ExchangeItem *item = self.dataArray[indexPath.row];
+    //[cell setItemImage:[UIImage imageNamed:@"sunglass"]];
+    NSLog(@"get view:%d", indexPath.row);
+    if (item.imageFile != nil) {
+        [item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            NSLog(@"get data success %d", indexPath.row);
+            if (!error) {
+                UIImage *image = [UIImage imageWithData:data];
+                [cell setItemImage:image];
+            }
+        }];
+    } else {
+        [cell setItemImage:[UIImage imageNamed:@"sunglass"]];
+    }
+
     cell.item = item;
     return cell;
 }

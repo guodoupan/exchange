@@ -12,4 +12,5 @@
 
 @property (nonatomic, strong) ExchangeItem *item;
 
+- (void)setItemImage: (UIImage *)image;
 @end

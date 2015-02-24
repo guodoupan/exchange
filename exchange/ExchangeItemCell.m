@@ -12,13 +12,18 @@
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UITextField *wantLabel;
-@property (weak, nonatomic) IBOutlet UITextField *userLabel;
 @end
 
 @implementation ExchangeItemCell
 
 - (void)awakeFromNib {
-    
+     self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self.nameLabel layoutIfNeeded];
+    self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -30,16 +35,20 @@
 - (void)setItem:(ExchangeItem *)item {
     if (item != nil) {
         self.nameLabel.text = item.name;
-        if (item.imageFile) {
-            NSLog(@"get image:%@", item.name);
-            [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-                NSLog(@"get image error: %@", error);
-                if (!error) {
-                    UIImage *image = [UIImage imageWithData:data];
-                    [self.iconImage setImage:image];
-                }
-            }];
-        }
+//        if (item.imageFile) {
+//            NSLog(@"get image:%@", item.name);
+//            [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+//                NSLog(@"get image error: %@", error);
+//                if (!error) {
+//                    UIImage *image = [UIImage imageWithData:data];
+//                    [self.iconImage setImage:image];
+//                }
+//            }];
+//        }
     }
+}
+
+- (void)setItemImage:(UIImage *)image {
+    self.iconImage.image = image;
 }
 @end
