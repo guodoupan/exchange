@@ -7,12 +7,14 @@
 //
 
 #import "ProfileViewController.h"
+#import "ItemCellTableViewCell.h"
 
 @interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *dataArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ProfileHeaderView *headerView;
+@property (nonatomic, strong) ItemCellTableViewCell * prototypeCell;
 
 @end
 
@@ -43,6 +45,9 @@
     [self.headerView setUser: self.user];
     self.tableView.tableHeaderView = self.headerView;
     
+    // Register nib
+    [self.tableView registerNib:[UINib nibWithNibName:@"ItemCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"ItemCellTableViewCell"];
+    
     [self loadData];
 }
 
@@ -51,13 +56,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma - table view actions
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"test"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"test"];
-    }
-    ExchangeItem *item = self.dataArray[indexPath.row];
-    cell.textLabel.text = item.name;
+    ItemCellTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
+    cell.item = self.dataArray[indexPath.row];
+    [cell selectionImageHidden:YES];
     return cell;
 }
 
@@ -67,6 +70,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.protoTypeCell.item = self.dataArray[indexPath.row];
+    [self.protoTypeCell layoutIfNeeded];
+    CGSize size = [self.protoTypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1;
 }
 
 - (void)loadData {
@@ -176,6 +186,13 @@
         return false;
     }
     return true;
+}
+
+- (ItemCellTableViewCell *)protoTypeCell {
+    if (!_protoTypeCell) {
+        _protoTypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
+    }
+    return _protoTypeCell;
 }
 
 @end
