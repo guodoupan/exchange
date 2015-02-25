@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "ExchangeItem.h"
 
 @interface Transaction : NSObject
 
 @property (nonatomic, strong) NSString *objectId;
-@property (nonatomic, strong) NSString *requestingItemId;
-@property (nonatomic, strong) NSString *requestedItemId;
+@property (nonatomic, strong) ExchangeItem *requestingItem;
+@property (nonatomic, strong) ExchangeItem *requestedItem;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;

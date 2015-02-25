@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -8,6 +8,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemDetailController">
             <connections>
                 <outlet property="ageAndOwnerLabel" destination="GnF-uW-rsL" id="N5c-PJ-OiQ"/>
+                <outlet property="descText" destination="R65-o6-zq9" id="IxW-6y-I2T"/>
+                <outlet property="exchangeButton" destination="W3b-QH-3hc" id="Zr7-BD-AWP"/>
                 <outlet property="itemDescTextView" destination="R65-o6-zq9" id="OX6-1R-XGc"/>
                 <outlet property="itemImageView" destination="Tc8-Rs-B8y" id="XIa-lO-gEp"/>
                 <outlet property="nameLabel" destination="Nqm-Nb-uei" id="jlB-mJ-Bh0"/>
@@ -19,42 +21,66 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created 4 days ago by John" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GnF-uW-rsL">
-                    <rect key="frame" x="30" y="118" width="260" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created 4 days ago by John" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnF-uW-rsL">
+                    <rect key="frame" x="25" y="464" width="260" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="W3b-QH-3hc">
-                    <rect key="frame" x="30" y="355" width="260" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                    <state key="normal" title="Exchange"/>
-                    <connections>
-                        <action selector="onExchange:" destination="-1" eventType="touchUpInside" id="qVY-Mr-cFe"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iphone 4 and a charger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nqm-Nb-uei">
-                    <rect key="frame" x="27" y="74" width="260" height="36"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iphone 4 and a charger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqm-Nb-uei">
+                    <rect key="frame" x="25" y="290" width="260" height="24"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic" id="Tc8-Rs-B8y">
-                    <rect key="frame" x="30" y="165" width="260" height="182"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pic" translatesAutoresizingMaskIntoConstraints="NO" id="Tc8-Rs-B8y">
+                    <rect key="frame" x="60" y="70" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="CGo-zR-P8H"/>
+                        <constraint firstAttribute="width" constant="200" id="uFg-p8-SJB"/>
+                    </constraints>
                 </imageView>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Item Description" id="R65-o6-zq9">
-                    <rect key="frame" x="41" y="399" width="238" height="161"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Item Description" translatesAutoresizingMaskIntoConstraints="NO" id="R65-o6-zq9">
+                    <rect key="frame" x="8" y="334" width="304" height="40"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="dd0-fm-aTp"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W3b-QH-3hc">
+                    <rect key="frame" x="0.0" y="382" width="320" height="42"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="z7h-t7-f2m"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" title="Exchange">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onExchange:" destination="-1" eventType="touchUpInside" id="qVY-Mr-cFe"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="GnF-uW-rsL" secondAttribute="trailing" constant="35" id="42r-7i-FZC"/>
+                <constraint firstAttribute="centerX" secondItem="Tc8-Rs-B8y" secondAttribute="centerX" id="7T8-q2-EEv"/>
+                <constraint firstAttribute="trailing" secondItem="R65-o6-zq9" secondAttribute="trailing" constant="8" id="Bk2-6o-goe"/>
+                <constraint firstItem="Tc8-Rs-B8y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Fha-Mq-867"/>
+                <constraint firstItem="GnF-uW-rsL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="JqY-n9-0DB"/>
+                <constraint firstItem="R65-o6-zq9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="UpJ-ie-HOS"/>
+                <constraint firstItem="R65-o6-zq9" firstAttribute="top" secondItem="Nqm-Nb-uei" secondAttribute="bottom" constant="20" id="W11-3J-hdC"/>
+                <constraint firstAttribute="trailing" secondItem="W3b-QH-3hc" secondAttribute="trailing" id="Wk8-7M-YBv"/>
+                <constraint firstItem="Nqm-Nb-uei" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="aig-K3-brZ"/>
+                <constraint firstItem="GnF-uW-rsL" firstAttribute="top" secondItem="W3b-QH-3hc" secondAttribute="bottom" constant="40" id="dYM-kh-Xii"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GnF-uW-rsL" secondAttribute="bottom" constant="60" id="f0V-hX-ptM"/>
+                <constraint firstAttribute="trailing" secondItem="Nqm-Nb-uei" secondAttribute="trailing" constant="35" id="f2H-Mu-ywI"/>
+                <constraint firstItem="W3b-QH-3hc" firstAttribute="top" secondItem="R65-o6-zq9" secondAttribute="bottom" constant="8" id="f58-WJ-pac"/>
+                <constraint firstItem="W3b-QH-3hc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gyo-Sl-Zeq"/>
+                <constraint firstItem="Nqm-Nb-uei" firstAttribute="top" secondItem="Tc8-Rs-B8y" secondAttribute="bottom" constant="20" id="vOp-Py-ZkZ"/>
+            </constraints>
             <point key="canvasLocation" x="-71" y="57"/>
         </view>
     </objects>

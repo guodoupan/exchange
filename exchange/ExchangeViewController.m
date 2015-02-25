@@ -75,8 +75,8 @@
     NSLog(@"requesting: %@, requested:%@", self.requestingItem.name, self.selected.item.name);
     
     Transaction *transaction = [[Transaction alloc] init];
-    transaction.requestingItemId = self.requestingItem.objectId;
-    transaction.requestedItemId = self.selected.item.objectId;
+    transaction.requestingItem = self.requestingItem;
+    transaction.requestedItem = self.selected.item;
     transaction.status = TransactionRequesting;
     [[transaction pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {

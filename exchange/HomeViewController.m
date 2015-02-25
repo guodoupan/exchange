@@ -117,6 +117,7 @@
     self.title = @"Exchange";
     UIImage *image = [UIImage imageNamed:@"explore"];
     UITabBarItem* tabItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:image tag:0];
+    tabItem.selectedImage = [UIImage imageNamed:@"explore_selected"];
     self.tabBarItem = tabItem;
     
     UIImage *searchImage = [UIImage imageNamed:@"search"];

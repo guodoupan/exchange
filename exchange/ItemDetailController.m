@@ -13,7 +13,9 @@
 @interface ItemDetailController ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ageAndOwnerLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descText;
+@property (weak, nonatomic) IBOutlet UIButton *exchangeButton;
+
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UITextView *itemDescTextView;
 @property (strong, nonatomic) ExchangeItem* item;
@@ -33,6 +35,8 @@
     // Do any additional setup after loading the view from its nib.
     self.nameLabel.text = self.item.name;
     self.itemDescTextView.text = self.item.desc;
+     UIColor *customColor = [UIColor colorWithRed:199.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1];
+    [self.exchangeButton setBackgroundColor:customColor];
     
     if (self.item.imageFile) {
         [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {

@@ -15,8 +15,8 @@
     
     if (self) {
         self.objectId = [object objectId];
-        self.requestingItemId = object[@"requestingItemId"];
-        self.requestedItemId = object[@"requestedItemId"];
+        self.requestingItem = [[ExchangeItem alloc] initWithPFObject:object[@"requestingItem"]];
+        self.requestedItem = [[ExchangeItem alloc] initWithPFObject:object[@"requestedItem"]];
         self.status = [object[@"status"] integerValue];
         self.createdAt = [object createdAt];
         self.updatedAt = [object updatedAt];
@@ -36,8 +36,8 @@
 
 - (PFObject *)pfObject {
     PFObject *object = [PFObject objectWithClassName:NSStringFromClass([self class])];
-    object[@"requestingItemId"] = self.requestingItemId;
-    object[@"requestedItemId"] = self.requestedItemId;
+    object[@"requestingItem"] = [self.requestingItem pfObject];
+    object[@"requestedItem"] = [self.requestedItem pfObject];
     object[@"status"] = @(self.status);
     return object;
 }

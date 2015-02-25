@@ -53,6 +53,12 @@
     tabBarController.viewControllers = controllers;
     tabBarController.delegate = self;
     self.window.rootViewController = tabBarController;
+    
+    UIColor *customColor = [UIColor colorWithRed:199.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1];
+    [[UITabBar appearance] setTintColor:customColor];
+    [[UINavigationBar appearance] setBarTintColor:customColor];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
