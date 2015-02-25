@@ -12,7 +12,6 @@ NSString * const PlaceHolder = @"Write your item's description ...";
 
 @interface PostViewController () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
-@property (weak, nonatomic) IBOutlet UITextField *typeTextField;
 @property (weak, nonatomic) IBOutlet UITextView *descTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 
@@ -127,7 +126,7 @@ NSString * const PlaceHolder = @"Write your item's description ...";
 - (IBAction)onPost:(id)sender {
     ExchangeItem *item = [[ExchangeItem alloc] init];
     item.name = self.nameTextField.text;
-    item.type = [self.typeTextField.text integerValue];
+    item.type = 0;
     item.desc = self.descTextView.text;
     item.status = ItemUploaded;
     item.userId = [[PFUser currentUser] objectId];
@@ -140,11 +139,19 @@ NSString * const PlaceHolder = @"Write your item's description ...";
         if (succeeded) {
             NSLog(@"post success");
             [[NSNotificationCenter defaultCenter] postNotificationName:DidUploadItemNotificationKey object:nil];
+            // Should clear existing content
+            [self tearDown];
             [self.tabBarController setSelectedIndex:0];
         } else {
             NSLog(@"post failed");
         }
     }];
+}
+
+- (void)tearDown {
+    self.nameTextField.text = @"";
+    self.descTextView.text = @"";
+    [self.itemImageView setImage:[UIImage imageNamed:@"itemPostImage"]];
 }
 
 @end
