@@ -11,6 +11,10 @@
 		0F01599A1A9A50E200B5FCB0 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0159981A9A50E200B5FCB0 /* ProfileViewController.xib */; };
 		0F01599D1A9A670C00B5FCB0 /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F01599C1A9A670C00B5FCB0 /* ProfileHeaderView.m */; };
 		0F01599F1A9A674800B5FCB0 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F01599E1A9A674800B5FCB0 /* ProfileHeaderView.xib */; };
+		0F1791021A9E2D9B00639F91 /* TransactionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1791001A9E2D9B00639F91 /* TransactionViewController.m */; };
+		0F1791031A9E2D9B00639F91 /* TransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1791011A9E2D9B00639F91 /* TransactionViewController.xib */; };
+		0F1791071A9E2DE900639F91 /* TransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F1791051A9E2DE900639F91 /* TransactionCell.m */; };
+		0F1791081A9E2DE900639F91 /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1791061A9E2DE900639F91 /* TransactionCell.xib */; };
 		0F4139161A97804700AF7B2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139151A97804700AF7B2F /* main.m */; };
 		0F4139191A97804700AF7B2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F4139181A97804700AF7B2F /* AppDelegate.m */; };
 		0F4139211A97804700AF7B2F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F4139201A97804700AF7B2F /* Images.xcassets */; };
@@ -54,6 +58,12 @@
 		0F01599B1A9A670C00B5FCB0 /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderView.h; sourceTree = "<group>"; };
 		0F01599C1A9A670C00B5FCB0 /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderView.m; sourceTree = "<group>"; };
 		0F01599E1A9A674800B5FCB0 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
+		0F1790FF1A9E2D9B00639F91 /* TransactionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionViewController.h; sourceTree = "<group>"; };
+		0F1791001A9E2D9B00639F91 /* TransactionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionViewController.m; sourceTree = "<group>"; };
+		0F1791011A9E2D9B00639F91 /* TransactionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionViewController.xib; sourceTree = "<group>"; };
+		0F1791041A9E2DE900639F91 /* TransactionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCell.h; sourceTree = "<group>"; };
+		0F1791051A9E2DE900639F91 /* TransactionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCell.m; sourceTree = "<group>"; };
+		0F1791061A9E2DE900639F91 /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		0F4139101A97804700AF7B2F /* exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F4139141A97804700AF7B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F4139151A97804700AF7B2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -205,6 +215,9 @@
 				0FA05A581A9AA1CE0052CC94 /* ExchangeItemCell.h */,
 				0FA05A591A9AA1CE0052CC94 /* ExchangeItemCell.m */,
 				0FA05A5A1A9AA1CE0052CC94 /* ExchangeItemCell.xib */,
+				0F1791041A9E2DE900639F91 /* TransactionCell.h */,
+				0F1791051A9E2DE900639F91 /* TransactionCell.m */,
+				0F1791061A9E2DE900639F91 /* TransactionCell.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -230,6 +243,9 @@
 				5C05608D1A9B0DD4004EE6EF /* ExchangeViewController.h */,
 				5C05608E1A9B0DD4004EE6EF /* ExchangeViewController.m */,
 				5C05608F1A9B0DD4004EE6EF /* ExchangeViewController.xib */,
+				0F1790FF1A9E2D9B00639F91 /* TransactionViewController.h */,
+				0F1791001A9E2D9B00639F91 /* TransactionViewController.m */,
+				0F1791011A9E2D9B00639F91 /* TransactionViewController.xib */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -344,11 +360,13 @@
 				5C0560911A9B0DD4004EE6EF /* ExchangeViewController.xib in Resources */,
 				0F01599F1A9A674800B5FCB0 /* ProfileHeaderView.xib in Resources */,
 				0F4139401A97886200AF7B2F /* LoginViewController.xib in Resources */,
+				0F1791081A9E2DE900639F91 /* TransactionCell.xib in Resources */,
 				0FA05A5C1A9AA1CE0052CC94 /* ExchangeItemCell.xib in Resources */,
 				5CDB9B251A99BEE80032F3A5 /* ItemDetailController.xib in Resources */,
 				0F4139481A978CEE00AF7B2F /* HomeViewController.xib in Resources */,
 				5C05608C1A9B07FE004EE6EF /* ItemCellTableViewCell.xib in Resources */,
 				0F4139531A9796B700AF7B2F /* PostViewController.xib in Resources */,
+				0F1791031A9E2D9B00639F91 /* TransactionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,12 +449,14 @@
 			files = (
 				0FDFEE2E1A9CD76700F79638 /* Transaction.m in Sources */,
 				0F4139521A9796B700AF7B2F /* PostViewController.m in Sources */,
+				0F1791071A9E2DE900639F91 /* TransactionCell.m in Sources */,
 				5C0560901A9B0DD4004EE6EF /* ExchangeViewController.m in Sources */,
 				0F0159991A9A50E200B5FCB0 /* ProfileViewController.m in Sources */,
 				0F41394B1A978FB300AF7B2F /* Constants.m in Sources */,
 				0F4139191A97804700AF7B2F /* AppDelegate.m in Sources */,
 				0F4139161A97804700AF7B2F /* main.m in Sources */,
 				5C05608B1A9B07FE004EE6EF /* ItemCellTableViewCell.m in Sources */,
+				0F1791021A9E2D9B00639F91 /* TransactionViewController.m in Sources */,
 				0F41393F1A97886200AF7B2F /* LoginViewController.m in Sources */,
 				0F4139471A978CEE00AF7B2F /* HomeViewController.m in Sources */,
 				0F41394E1A9791EA00AF7B2F /* ExchangeItem.m in Sources */,

@@ -72,11 +72,11 @@
 
 
 - (void) onDoneButton {
-    NSLog(@"requesting: %@, requested:%@", self.requestingItem.name, self.selected.item.name);
+    NSLog(@"requesting: %@, requested:%@", self.requestedItem.name, self.selected.item.name);
     
     Transaction *transaction = [[Transaction alloc] init];
-    transaction.requestingItem = self.requestingItem;
-    transaction.requestedItem = self.selected.item;
+    transaction.requestingItemId = self.selected.item.objectId;
+    transaction.requestedItemId = self.requestedItem.objectId;
     transaction.status = TransactionRequesting;
     [[transaction pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {

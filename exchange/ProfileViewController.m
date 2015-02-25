@@ -11,10 +11,11 @@
 
 @interface ProfileViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ProfileHeaderViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *dataArray;
+@property (strong, nonatomic) NSArray *myItemsDataArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) ProfileHeaderView *headerView;
 @property (nonatomic, strong) ItemCellTableViewCell * prototypeCell;
+@property (nonatomic, assign) BOOL showMyItem;
 
 @end
 
@@ -48,6 +49,7 @@
     // Register nib
     [self.tableView registerNib:[UINib nibWithNibName:@"ItemCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"ItemCellTableViewCell"];
     
+    self.showMyItem = YES;
     [self loadData];
 }
 
@@ -59,21 +61,25 @@
 #pragma - table view actions
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ItemCellTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
-    cell.item = self.dataArray[indexPath.row];
+    cell.item = self.myItemsDataArray[indexPath.row];
     [cell selectionImageHidden:YES];
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count;
+    return self.myItemsDataArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    TransactionViewController *vc = [[TransactionViewController alloc] init];
+    vc.requestedItem = self.myItemsDataArray[indexPath.row];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.protoTypeCell.item = self.dataArray[indexPath.row];
+    self.protoTypeCell.item = self.myItemsDataArray[indexPath.row];
     [self.protoTypeCell layoutIfNeeded];
     CGSize size = [self.protoTypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height + 1;
@@ -87,7 +93,7 @@
         if (!error) {
             // The find succeeded.
             // Do something with the found objects
-            self.dataArray = [ExchangeItem exchangeItemsWithArray:objects];
+            self.myItemsDataArray = [ExchangeItem exchangeItemsWithArray:objects];
             [self.tableView reloadData];
         } else {
             // Log details of the failure
@@ -96,9 +102,30 @@
         [self.refreshControl endRefreshing];
     }];
     
+    
     [self loadAvatar];
 }
 
+- (void)loadTransaction {
+    PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
+    PFQuery *transactionQuery = [PFQuery queryWithClassName:@"Transaction"];
+    [query orderByDescending:@"updatedAt"];
+    [query whereKey:@"userid" equalTo:[self.user objectId]];
+    [query whereKey:@"objectId" matchesKey:@"requestingItemId" inQuery:transactionQuery];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            // Do something with the found objects
+            self.myItemsDataArray = [ExchangeItem exchangeItemsWithArray:objects];
+            [self.tableView reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+        [self.refreshControl endRefreshing];
+    }];
+
+}
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         [PFUser logOut];

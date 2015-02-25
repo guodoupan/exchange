@@ -12,6 +12,8 @@
 #import "Constants.h"
 #import "ExchangeItem.h"
 #import "ItemCellTableViewCell.h"
+#import "Transaction.h"
+#import "TransactionViewController.h"
 
 @interface ProfileViewController : UIViewController
 

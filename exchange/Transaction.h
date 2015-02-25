@@ -13,6 +13,8 @@
 @interface Transaction : NSObject
 
 @property (nonatomic, strong) NSString *objectId;
+@property (nonatomic, strong) NSString *requestingItemId;
+@property (nonatomic, strong) NSString *requestedItemId;
 @property (nonatomic, strong) ExchangeItem *requestingItem;
 @property (nonatomic, strong) ExchangeItem *requestedItem;
 @property (nonatomic, assign) NSInteger status;
