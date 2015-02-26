@@ -102,12 +102,26 @@
             object[@"status"] = @(didAccecpted ? TransactionAccepted : TransactionRejected);
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 NSLog(@"save success:%d", succeeded);
+                PFQuery *itemQuery = [PFQuery queryWithClassName:@"ExchangeItem"];
+                [itemQuery getObjectInBackgroundWithId:self.requestedItem.objectId block:^(PFObject *object, NSError *error) {
+                    if (!error) {
+                        object[@"status"] = @(didAccecpted ? ItemExchangeAccepted : ItemExchangeRejected);
+                        [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            if (!error) {
+                                [self dismissViewControllerAnimated:YES completion:nil];
+                            } else {
+                                NSLog(@"save item error:%@", error);
+                            }
+                        }];
+                    } else {
+                        NSLog(@"get item error: %@", error);
+                    }
+                }];
             }];
             
         }
     }];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onClose:(id)sender {

@@ -35,16 +35,7 @@
 - (void)setItem:(ExchangeItem *)item {
     if (item != nil) {
         self.nameLabel.text = item.name;
-//        if (item.imageFile) {
-//            NSLog(@"get image:%@", item.name);
-//            [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-//                NSLog(@"get image error: %@", error);
-//                if (!error) {
-//                    UIImage *image = [UIImage imageWithData:data];
-//                    [self.iconImage setImage:image];
-//                }
-//            }];
-//        }
+        self.wantLabel.text = [NSString stringWithFormat:@"Wanted:%d", item.wanted];
     }
 }
 

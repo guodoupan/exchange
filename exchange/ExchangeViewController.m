@@ -81,7 +81,24 @@
     [[transaction pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
             NSLog(@"transaction success");
-            [self.navigationController popViewControllerAnimated:TRUE];
+            PFQuery *itemQuery = [PFQuery queryWithClassName:@"ExchangeItem"];
+            [itemQuery getObjectInBackgroundWithId:self.requestedItem.objectId block:^(PFObject *object, NSError *error) {
+                if (!error) {
+                    int wanted = [object[@"wanted"] integerValue] + 1;
+                    object[@"wanted"] = @(wanted);
+                    object[@"status"] = @(ItemExchangeRequesting);
+                    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (!error) {
+                            [self.navigationController popViewControllerAnimated:TRUE];
+                        } else {
+                            NSLog(@"save item error:%@", error);
+                        }
+                    }];
+                } else {
+                    NSLog(@"get item error: %@", error);
+                }
+            }];
+            
         } else {
             NSLog(@"transaction failed: %@", error);
         }

@@ -129,6 +129,7 @@ NSString * const PlaceHolder = @"Write your item's description ...";
     item.type = 0;
     item.desc = self.descTextView.text;
     item.status = ItemUploaded;
+    item.wanted = 0;
     item.userId = [[PFUser currentUser] objectId];
     
     // Save image file

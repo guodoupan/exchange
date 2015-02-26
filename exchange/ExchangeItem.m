@@ -19,6 +19,7 @@
         self.desc = object[@"desc"];
         self.type = [[object valueForKey:@"type"] integerValue];
         self.status = [[object valueForKey:@"status"] integerValue];
+        self.wanted = [[object valueForKey:@"wanted"] integerValue];
         self.userId = object[@"userid"];
         self.createdAt = [object createdAt];
         self.updatedAt = [object updatedAt];
@@ -45,8 +46,8 @@
     object[@"status"] = @(self.status);
     object[@"userid"] = self.userId;
     object[@"imageFile"] = self.imageFile;
+    object[@"wanted"] = @(self.wanted);
     
-    //TODO imageurl, date, nsid
     return object;
 }
 

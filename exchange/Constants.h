@@ -20,6 +20,7 @@ typedef enum ItemStatus : NSInteger {
     ItemUploaded, // just uploaded
     ItemExchangeRequesting, // someone requesting an exchange
     ItemExchangeAccepted, // exchange accecpted
+    ItemExchangeRejected,
     ItemNotAvaiable // not avaiable for exchange
 } ItemStatus;
 

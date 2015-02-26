@@ -135,6 +135,7 @@
 - (void)loadData: (NSString *)keyword{
     PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
     [query orderByDescending:@"updatedAt"];
+    [query whereKey:@"userid" notEqualTo:[PFUser currentUser].objectId];
     if (keyword != nil) {
         [query whereKey:@"name" containsString:keyword];
     }

@@ -31,6 +31,7 @@
 - (void) setItem:(ExchangeItem *)item{
     _item = item;
     self.nameLabel.text = self.item.name;
+    self.wantedLabel.text = [NSString stringWithFormat:@"Wanted:%d", self.item.wanted];
     
     if (self.item.imageFile) {
         [self.item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
