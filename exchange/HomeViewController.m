@@ -8,10 +8,12 @@
 
 #import "HomeViewController.h"
 #import "ItemDetailController.h"
+#import "Transaction.h"
 
 @interface HomeViewController () <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, strong) NSArray *transactionArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIView *titleView;
 
@@ -69,6 +71,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExchangeItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExchangeItemCell"];
     ExchangeItem *item = self.dataArray[indexPath.row];
+    NSArray *trans = self.transactionArray[indexPath.row];
     //[cell setItemImage:[UIImage imageNamed:@"sunglass"]];
     NSLog(@"get view:%ld", indexPath.row);
     if (item.imageFile != nil) {
@@ -77,6 +80,7 @@
             if (!error) {
                 UIImage *image = [UIImage imageWithData:data];
                 [cell setItemImage:image];
+                [cell setTransactionsArray:trans];
             }
         }];
     } else {
@@ -146,6 +150,9 @@
             NSLog(@"Successfully retrieved %ld items.", objects.count);
             // Do something with the found objects
             self.dataArray = [ExchangeItem exchangeItemsWithArray:objects];
+            
+            // Need to populate transaction table syncly
+            [self generateTransactions];
             [self.tableView reloadData];
         } else {
             // Log details of the failure
@@ -153,6 +160,23 @@
         }
         [self.refreshControl endRefreshing];
     }];
+}
+
+#pragma - need to find objects sync
+- (void)generateTransactions {
+    NSMutableArray *transactionMutableArray = [NSMutableArray array];
+    for(ExchangeItem *item in self.dataArray) {
+        NSMutableArray* arrIntem = [NSMutableArray array];
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Transaction"];
+        [query whereKey:@"requestedItemId" equalTo:item.objectId];
+        NSArray *objects = [query findObjects];
+        for (Transaction *trans in objects) {
+            [arrIntem addObject:trans];
+        }
+        [transactionMutableArray addObject:arrIntem];
+    }
+    self.transactionArray = transactionMutableArray;
 }
 
 - (void)onLogout:(id)sender {

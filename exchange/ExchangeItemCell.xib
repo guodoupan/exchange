@@ -36,20 +36,30 @@
                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="By:" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LIr-I3-5oL">
+                        <rect key="frame" x="8" y="291" width="398" height="19"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="16"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ZE2-xF-gYL" firstAttribute="top" secondItem="6sQ-4T-Aho" secondAttribute="bottom" constant="18" id="4dj-hR-Lbg"/>
                     <constraint firstAttribute="trailing" secondItem="ZE2-xF-gYL" secondAttribute="trailing" constant="8" id="Bh3-jG-f8f"/>
                     <constraint firstItem="ZE2-xF-gYL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Bn2-Tm-1zj"/>
+                    <constraint firstItem="LIr-I3-5oL" firstAttribute="top" secondItem="xzP-OO-mX6" secondAttribute="bottom" constant="8" id="EVy-7t-zfw"/>
                     <constraint firstItem="xzP-OO-mX6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="IMB-2o-X2s"/>
+                    <constraint firstItem="LIr-I3-5oL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="IhZ-Mn-UUY"/>
                     <constraint firstAttribute="centerX" secondItem="6sQ-4T-Aho" secondAttribute="centerX" id="Uuf-H0-lu7"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xzP-OO-mX6" secondAttribute="bottom" constant="20" id="Yc6-VW-JVF"/>
+                    <constraint firstAttribute="trailing" secondItem="LIr-I3-5oL" secondAttribute="trailing" constant="8" id="VF6-Uq-M87"/>
                     <constraint firstItem="6sQ-4T-Aho" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="ZR0-b5-Aer"/>
                     <constraint firstItem="xzP-OO-mX6" firstAttribute="top" secondItem="ZE2-xF-gYL" secondAttribute="bottom" constant="18" id="eN4-LD-glm"/>
                     <constraint firstAttribute="trailing" secondItem="xzP-OO-mX6" secondAttribute="trailing" constant="8" id="fl0-co-3tv"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LIr-I3-5oL" secondAttribute="bottom" constant="100" id="oGU-rl-wpa"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="byLabel" destination="LIr-I3-5oL" id="gR5-nv-7yr"/>
                 <outlet property="iconImage" destination="6sQ-4T-Aho" id="wcx-BM-H6F"/>
                 <outlet property="nameLabel" destination="ZE2-xF-gYL" id="cAl-fx-2B7"/>
                 <outlet property="wantLabel" destination="xzP-OO-mX6" id="jCv-2a-YTm"/>
