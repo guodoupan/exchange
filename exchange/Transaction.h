@@ -21,6 +21,9 @@
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
 
+@property (nonatomic, strong) PFUser *requestingUser;
+@property (nonatomic, strong) PFUser *requestedUser;
+
 - (id)initWithPFObject: (PFObject *)object;
 + (NSArray *)transactionsWithArray: (NSArray *)array;
 

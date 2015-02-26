@@ -91,7 +91,7 @@
 - (IBAction)onExchange:(id)sender {
     NSLog(@"On Exchange");
     // getting the user active items
-    ExchangeViewController *evc = [[ExchangeViewController alloc] initForUser:[self.item.user.objectId integerValue]];
+    ExchangeViewController *evc = [[ExchangeViewController alloc] initForUser:self.item.user];
     evc.requestedItem = self.item;
     [self.navigationController pushViewController:evc animated:YES];
 }

@@ -21,8 +21,9 @@
 
 @implementation ExchangeViewController
 
--(id) initForUser:(NSInteger) userId{
+-(id) initForUser:(PFUser *) user{
     if(self = [super init]){
+        self.requestedUser = user;
         PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
         [query orderByDescending:@"updatedAt"];
         [query whereKey:@"user" equalTo:[PFUser currentUser]];
@@ -76,6 +77,8 @@
     
     Transaction *transaction = [[Transaction alloc] init];
     transaction.requestingItemId = self.selected.item.objectId;
+    transaction.requestingUser = [PFUser currentUser];
+    transaction.requestedUser = self.requestedUser;
     transaction.requestedItemId = self.requestedItem.objectId;
     transaction.status = TransactionRequesting;
     [[transaction pfObject] saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

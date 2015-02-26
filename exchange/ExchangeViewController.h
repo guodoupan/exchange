@@ -13,7 +13,8 @@
 
 @interface ExchangeViewController : UIViewController
 
--(id) initForUser:(NSInteger) userId;
+-(id) initForUser:(PFUser *) user;
+@property (nonatomic, strong) PFUser *requestedUser;
 @property (nonatomic, strong) ExchangeItem *requestedItem;
 @property (nonatomic, strong) ItemCellTableViewCell *protoTypeCell;
 

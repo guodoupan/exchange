@@ -22,6 +22,8 @@
         self.status = [object[@"status"] integerValue];
         self.createdAt = [object createdAt];
         self.updatedAt = [object updatedAt];
+        self.requestedUser = object[@"requestedUser"];
+        self.requestingUser = object[@"requestingUser"];
     }
     
     return self;
@@ -43,6 +45,8 @@
 //    object[@"requestingItem"] = [self.requestingItem pfObject];
 //    object[@"requestedItem"] = [self.requestedItem pfObject];
     object[@"status"] = @(self.status);
+    object[@"requestedUser"] = self.requestedUser;
+    object[@"requestingUser"] = self.requestingUser;
     return object;
 }
 
