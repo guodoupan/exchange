@@ -77,6 +77,9 @@
     }
     
     self.ageAndOwnerLabel.text =self.item.user.username;
+    self.iconImage.layer.cornerRadius = self.iconImage.frame.size.height /2;
+    self.iconImage.layer.masksToBounds = YES;
+    self.iconImage.layer.borderWidth = 0;
     [self loadAvatar];
 }
 

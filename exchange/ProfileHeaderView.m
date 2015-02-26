@@ -24,6 +24,9 @@
 + (id)profileHeader {
     ProfileHeaderView *profileHeader = [[[NSBundle mainBundle] loadNibNamed:@"ProfileHeaderView" owner:nil options:nil] lastObject];
     if ([profileHeader isKindOfClass:[ProfileHeaderView class]]) {
+        profileHeader.avatarImage.layer.cornerRadius = profileHeader.avatarImage.frame.size.height /2;
+        profileHeader.avatarImage.layer.masksToBounds = YES;
+        profileHeader.avatarImage.layer.borderWidth = 0;
         return profileHeader;
     }
     return nil;
