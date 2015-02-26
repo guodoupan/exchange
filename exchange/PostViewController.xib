@@ -56,7 +56,11 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="la0-LA-KP6">
                     <rect key="frame" x="20" y="28" width="25" height="25"/>
-                    <state key="normal" image="back">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="MIx-pK-yFu"/>
+                        <constraint firstAttribute="height" constant="25" id="QlQ-Tn-xzd"/>
+                    </constraints>
+                    <state key="normal" image="backRed">
                         <color key="titleColor" red="0.74117647060000003" green="0.39607843139999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -86,7 +90,7 @@
         </view>
     </objects>
     <resources>
-        <image name="back" width="25" height="25"/>
+        <image name="backRed" width="78" height="106"/>
         <image name="itemPostImage" width="350" height="352"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
