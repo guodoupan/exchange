@@ -185,5 +185,9 @@ NSString * const PlaceHolder = @"Write your item's description ...";
     self.descTextView.text = @"";
     [self.itemImageView setImage:[UIImage imageNamed:@"itemPostImage"]];
 }
+- (IBAction)onBackButtonClick:(id)sender {
+    [self tearDown];
+    [[NSNotificationCenter defaultCenter] postNotificationName:DidLoginNotificationKey object:nil userInfo:nil];
+}
 
 @end
