@@ -17,20 +17,59 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="rIk-gD-asJ">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJb-Rd-Jv8">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gwy-kj-Zdq">
+                            <rect key="frame" x="20" y="17" width="28" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="28" id="PeL-u2-0gU"/>
+                                <constraint firstAttribute="height" constant="25" id="b2J-Dy-e42"/>
+                            </constraints>
+                            <state key="normal" image="back">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onClose:" destination="-1" eventType="touchUpInside" id="vfL-8Q-AKi"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wanting" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sgb-Ha-mo5">
+                            <rect key="frame" x="128.5" y="21" width="63" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.78039215689999997" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Sgb-Ha-mo5" firstAttribute="top" secondItem="NJb-Rd-Jv8" secondAttribute="top" constant="21" id="1vm-au-eNV"/>
+                        <constraint firstAttribute="height" constant="64" id="49p-nV-tVw"/>
+                        <constraint firstAttribute="bottom" secondItem="Sgb-Ha-mo5" secondAttribute="bottom" constant="22" id="PIJ-e8-Uiu"/>
+                        <constraint firstItem="gwy-kj-Zdq" firstAttribute="leading" secondItem="NJb-Rd-Jv8" secondAttribute="leading" constant="20" id="bHQ-wl-3QU"/>
+                        <constraint firstItem="gwy-kj-Zdq" firstAttribute="top" secondItem="NJb-Rd-Jv8" secondAttribute="top" constant="17" id="rjr-93-ixn"/>
+                        <constraint firstAttribute="centerX" secondItem="Sgb-Ha-mo5" secondAttribute="centerX" id="xht-s8-hya"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="rIk-gD-asJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8qy-bJ-tiN"/>
-                <constraint firstAttribute="bottom" secondItem="rIk-gD-asJ" secondAttribute="bottom" id="Vza-k8-wVm"/>
+                <constraint firstItem="rIk-gD-asJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="8qy-bJ-tiN"/>
+                <constraint firstItem="NJb-Rd-Jv8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="AuJ-ER-fgE"/>
+                <constraint firstAttribute="bottom" secondItem="rIk-gD-asJ" secondAttribute="bottom" id="Tee-Yo-PTo"/>
                 <constraint firstItem="rIk-gD-asJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="WD2-I4-KMX"/>
+                <constraint firstItem="NJb-Rd-Jv8" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kzU-Yg-ZAY"/>
                 <constraint firstAttribute="trailing" secondItem="rIk-gD-asJ" secondAttribute="trailing" id="si2-FC-3fA"/>
+                <constraint firstAttribute="trailing" secondItem="NJb-Rd-Jv8" secondAttribute="trailing" id="vdx-t5-NSl"/>
             </constraints>
             <point key="canvasLocation" x="339" y="237"/>
         </view>
     </objects>
+    <resources>
+        <image name="back" width="25" height="25"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

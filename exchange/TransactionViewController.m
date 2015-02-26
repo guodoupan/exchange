@@ -110,6 +110,10 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)onClose:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 /*
 #pragma mark - Navigation
 

@@ -12,7 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *selectionImageView;
+@property (weak, nonatomic) IBOutlet UILabel *wantedLabel;
 
 @end
 
@@ -43,14 +43,5 @@
         // Image placeholder for non-image case
         [self.itemImageView setImage:[UIImage imageNamed:@"picColored"]];
     }
-}
-
-- (void) selectionImageHiddenSwitch{
-    BOOL hiddenState = ![self.selectionImageView isHidden];
-    [self.selectionImageView setHidden:hiddenState];
-}
-
-- (void) selectionImageHidden:(BOOL)hidden{
-    [self.selectionImageView setHidden:hidden];
 }
 @end

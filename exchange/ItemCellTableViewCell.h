@@ -13,6 +13,4 @@
 
 @interface ItemCellTableViewCell : UITableViewCell
 @property(nonatomic, strong) ExchangeItem* item;
-- (void) selectionImageHiddenSwitch;
-- (void) selectionImageHidden:(BOOL)hidden;
 @end

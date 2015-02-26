@@ -62,7 +62,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ItemCellTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
     cell.item = self.myItemsDataArray[indexPath.row];
-    [cell selectionImageHidden:YES];
     return cell;
 }
 

@@ -59,7 +59,7 @@
     //update the view controller about the castom cell
     [self.tableView registerNib:[UINib nibWithNibName:@"ItemCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"ItemCellTableViewCell"];
     
-    self.title = @"Select an Item 4 Exchange";
+    self.title = @"Choose one";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(onDoneButton)];
 
@@ -96,22 +96,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     ItemCellTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"ItemCellTableViewCell"];
     cell.item = self.items[indexPath.row];
-    [cell selectionImageHidden:YES];
-    if(indexPath.row == self.selectedRow){
-        [self.selected selectionImageHiddenSwitch];
-    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     ItemCellTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(self.selected && self.selected!=cell){
-        [self.selected selectionImageHiddenSwitch];
-    }
     self.selected = cell;
     self.selectedRow = indexPath.row;
-    [self.selected selectionImageHiddenSwitch];
     //The actual query that set the transaction entry should be implemented.
     
 }

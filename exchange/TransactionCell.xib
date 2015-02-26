@@ -21,19 +21,14 @@
                             <constraint firstAttribute="height" constant="130" id="jbV-DX-Q46"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hak-AP-kKD">
-                        <rect key="frame" x="304" y="24" width="42.5" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U4W-CT-jfM">
-                        <rect key="frame" x="298" y="58" width="49" height="30"/>
+                        <rect key="frame" x="175" y="115" width="49" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="TiV-p2-YgW"/>
                             <constraint firstAttribute="width" constant="49" id="h41-IK-89G"/>
                         </constraints>
                         <state key="normal" title="Accept">
+                            <color key="titleColor" red="0.78039215689999997" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -41,34 +36,49 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hye-cA-LOc">
-                        <rect key="frame" x="303" y="96" width="44" height="30"/>
+                        <rect key="frame" x="279" y="115" width="44" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="44" id="SWF-cP-o9n"/>
                             <constraint firstAttribute="height" constant="30" id="lgJ-2w-W4n"/>
                         </constraints>
                         <state key="normal" title="Reject">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
                             <action selector="onReject:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PJ7-o0-Tdp"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hak-AP-kKD">
+                        <rect key="frame" x="175" y="62" width="171.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hye-cA-LOc" firstAttribute="leading" secondItem="UKx-zZ-m9E" secondAttribute="trailing" constant="8" id="2KP-Di-aVY"/>
-                    <constraint firstItem="U4W-CT-jfM" firstAttribute="top" secondItem="hak-AP-kKD" secondAttribute="bottom" constant="13" id="84u-bI-zcq"/>
-                    <constraint firstAttribute="trailing" secondItem="hak-AP-kKD" secondAttribute="trailing" constant="8" id="FfG-E8-ZWT"/>
-                    <constraint firstAttribute="trailing" secondItem="U4W-CT-jfM" secondAttribute="trailing" constant="8" id="IJZ-1t-A7L"/>
+                    <constraint firstItem="U4W-CT-jfM" firstAttribute="leading" secondItem="UKx-zZ-m9E" secondAttribute="trailing" constant="37" id="5kY-cC-a2j"/>
+                    <constraint firstItem="U4W-CT-jfM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hak-AP-kKD" secondAttribute="bottom" constant="13" id="84u-bI-zcq"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hak-AP-kKD" secondAttribute="trailing" constant="8" id="FfG-E8-ZWT"/>
+                    <constraint firstItem="hak-AP-kKD" firstAttribute="leading" secondItem="UKx-zZ-m9E" secondAttribute="trailing" constant="37" id="GeE-Jt-tjt"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="U4W-CT-jfM" secondAttribute="trailing" constant="8" id="IJZ-1t-A7L"/>
                     <constraint firstItem="UKx-zZ-m9E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="KoC-SZ-1ws"/>
+                    <constraint firstItem="U4W-CT-jfM" firstAttribute="top" secondItem="hak-AP-kKD" secondAttribute="bottom" constant="32.5" id="PBW-lS-isQ"/>
+                    <constraint firstItem="hye-cA-LOc" firstAttribute="top" secondItem="hak-AP-kKD" secondAttribute="bottom" constant="32.5" id="Pq6-fv-r66"/>
                     <constraint firstItem="hye-cA-LOc" firstAttribute="top" secondItem="U4W-CT-jfM" secondAttribute="bottom" constant="8" id="RDC-gJ-k4F"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UKx-zZ-m9E" secondAttribute="bottom" constant="8" id="bVL-ws-oQt"/>
-                    <constraint firstAttribute="trailing" secondItem="hye-cA-LOc" secondAttribute="trailing" constant="8" id="hyU-UG-yAU"/>
-                    <constraint firstItem="hak-AP-kKD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="kjZ-SG-UKh"/>
+                    <constraint firstAttribute="bottom" secondItem="hye-cA-LOc" secondAttribute="bottom" constant="23.5" id="bru-1h-Rxz"/>
+                    <constraint firstAttribute="trailing" secondItem="hye-cA-LOc" secondAttribute="trailing" constant="32" id="hyU-UG-yAU"/>
+                    <constraint firstItem="hak-AP-kKD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="62" id="kjZ-SG-UKh"/>
                     <constraint firstItem="UKx-zZ-m9E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="vq5-lQ-7SS"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="84u-bI-zcq"/>
                         <exclude reference="2KP-Di-aVY"/>
+                        <exclude reference="RDC-gJ-k4F"/>
+                        <exclude reference="bru-1h-Rxz"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
