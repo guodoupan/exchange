@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 
 @property (nonatomic, strong) PFUser *currentUser;
@@ -31,6 +32,7 @@
 - (void)setUser:(PFUser *)user {
     self.currentUser = user;
     self.nameLabel.text = user.username;
+    self.emailLabel.text = user.email;
 }
 
 - (void)setAvatar:(UIImage *)image {

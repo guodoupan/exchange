@@ -79,12 +79,43 @@ NSString * const PlaceHolder = @"Write your item's description ...";
     [textView resignFirstResponder];
 }
 
+-(UIImage *)resizeImage:(UIImage *)image toSize:(CGSize)size
+{
+    float width = size.width;
+    float height = size.height;
+    
+    UIGraphicsBeginImageContext(size);
+    CGRect rect = CGRectMake(0, 0, width, height);
+    
+    float widthRatio = image.size.width / width;
+    float heightRatio = image.size.height / height;
+    float divisor = widthRatio > heightRatio ? widthRatio : heightRatio;
+    
+    width = image.size.width / divisor;
+    height = image.size.height / divisor;
+    
+    rect.size.width  = width;
+    rect.size.height = height;
+    
+    if(height < width)
+        rect.origin.y = height / 3;
+    
+    [image drawInRect: rect];
+    
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
+
 #pragma - image picker actions
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    UIImage *resizeImage = [self resizeImage:chosenImage toSize:CGSizeMake(800, 800)];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    self.itemImageView.image = chosenImage;
-    [self setItemImage:chosenImage];
+    self.itemImageView.image = resizeImage;
+    [self setItemImage:resizeImage];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -130,7 +161,7 @@ NSString * const PlaceHolder = @"Write your item's description ...";
     item.desc = self.descTextView.text;
     item.status = ItemUploaded;
     item.wanted = 0;
-    item.userId = [[PFUser currentUser] objectId];
+    item.user = [PFUser currentUser];
     
     // Save image file
     PFFile *imageFile = [PFFile fileWithData:UIImagePNGRepresentation(self.itemImage)];

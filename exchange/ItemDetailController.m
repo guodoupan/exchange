@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *itemImageView;
 @property (weak, nonatomic) IBOutlet UITextView *itemDescTextView;
 @property (strong, nonatomic) ExchangeItem* item;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @end
 
 @implementation ItemDetailController
@@ -75,7 +76,8 @@
         formattedDateString = [NSString stringWithFormat:@"in %dyr", years];
     }
     
-    self.ageAndOwnerLabel.text = [NSString stringWithFormat:@"Published by %@ %@",self.item.userId, formattedDateString];
+    self.ageAndOwnerLabel.text =self.item.user.username;
+    [self loadAvatar];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,13 +88,25 @@
 - (IBAction)onExchange:(id)sender {
     NSLog(@"On Exchange");
     // getting the user active items
-    ExchangeViewController *evc = [[ExchangeViewController alloc] initForUser:[self.item.userId integerValue]];
+    ExchangeViewController *evc = [[ExchangeViewController alloc] initForUser:[self.item.user.objectId integerValue]];
     evc.requestedItem = self.item;
     [self.navigationController pushViewController:evc animated:YES];
 }
 
 - (NSArray*) fetchUserItems:(NSInteger) userId{
     return [NSArray array];
+}
+
+- (void)loadAvatar {
+    // Actually we can save image inside the PFUser, no need for a new Class
+    PFUser *user = self.item.user;
+    PFFile *imageFile = user[@"profilePic"];
+    [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        if (!error) {
+            UIImage *image = [UIImage imageWithData:data];
+            self.iconImage.image = image;
+        }
+    }];
 }
 
 @end

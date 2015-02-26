@@ -17,10 +17,10 @@
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSInteger status;
 @property (nonatomic, assign) NSInteger wanted;
-@property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, strong) NSDate *updatedAt;
 @property (nonatomic, strong) PFFile *imageFile;
+@property (nonatomic, strong) PFUser *user;
 
 - (id)initWithPFObject: (PFObject *)object;
 + (NSArray *)exchangeItemsWithArray: (NSArray *)array;

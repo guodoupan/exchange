@@ -10,6 +10,7 @@
                 <outlet property="ageAndOwnerLabel" destination="GnF-uW-rsL" id="N5c-PJ-OiQ"/>
                 <outlet property="descText" destination="R65-o6-zq9" id="IxW-6y-I2T"/>
                 <outlet property="exchangeButton" destination="W3b-QH-3hc" id="Zr7-BD-AWP"/>
+                <outlet property="iconImage" destination="JgP-Ne-mFx" id="kM8-DL-xAv"/>
                 <outlet property="itemDescTextView" destination="R65-o6-zq9" id="OX6-1R-XGc"/>
                 <outlet property="itemImageView" destination="Tc8-Rs-B8y" id="XIa-lO-gEp"/>
                 <outlet property="nameLabel" destination="Nqm-Nb-uei" id="jlB-mJ-Bh0"/>
@@ -21,10 +22,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created 4 days ago by John" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnF-uW-rsL">
-                    <rect key="frame" x="25" y="464" width="260" height="16"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Created 4 days ago by John" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnF-uW-rsL">
+                    <rect key="frame" x="25" y="444" width="260" height="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                    <color key="textColor" red="0.78039215689999997" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Iphone 4 and a charger" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqm-Nb-uei">
@@ -62,6 +63,13 @@
                         <action selector="onExchange:" destination="-1" eventType="touchUpInside" id="qVY-Mr-cFe"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="JgP-Ne-mFx">
+                    <rect key="frame" x="130" y="478" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="f3K-1N-tgC"/>
+                        <constraint firstAttribute="width" constant="60" id="xFT-qc-kcH"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -70,21 +78,23 @@
                 <constraint firstAttribute="trailing" secondItem="R65-o6-zq9" secondAttribute="trailing" constant="8" id="Bk2-6o-goe"/>
                 <constraint firstItem="Tc8-Rs-B8y" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="Fha-Mq-867"/>
                 <constraint firstItem="GnF-uW-rsL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="JqY-n9-0DB"/>
+                <constraint firstItem="JgP-Ne-mFx" firstAttribute="top" secondItem="GnF-uW-rsL" secondAttribute="bottom" constant="18" id="S1T-hb-rQp"/>
                 <constraint firstItem="R65-o6-zq9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="UpJ-ie-HOS"/>
                 <constraint firstItem="R65-o6-zq9" firstAttribute="top" secondItem="Nqm-Nb-uei" secondAttribute="bottom" constant="20" id="W11-3J-hdC"/>
                 <constraint firstAttribute="trailing" secondItem="W3b-QH-3hc" secondAttribute="trailing" id="Wk8-7M-YBv"/>
                 <constraint firstItem="Nqm-Nb-uei" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="aig-K3-brZ"/>
-                <constraint firstItem="GnF-uW-rsL" firstAttribute="top" secondItem="W3b-QH-3hc" secondAttribute="bottom" constant="40" id="dYM-kh-Xii"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GnF-uW-rsL" secondAttribute="bottom" constant="60" id="f0V-hX-ptM"/>
+                <constraint firstItem="GnF-uW-rsL" firstAttribute="top" secondItem="W3b-QH-3hc" secondAttribute="bottom" constant="20" id="dYM-kh-Xii"/>
                 <constraint firstAttribute="trailing" secondItem="Nqm-Nb-uei" secondAttribute="trailing" constant="35" id="f2H-Mu-ywI"/>
                 <constraint firstItem="W3b-QH-3hc" firstAttribute="top" secondItem="R65-o6-zq9" secondAttribute="bottom" constant="8" id="f58-WJ-pac"/>
                 <constraint firstItem="W3b-QH-3hc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gyo-Sl-Zeq"/>
+                <constraint firstAttribute="centerX" secondItem="JgP-Ne-mFx" secondAttribute="centerX" id="kmk-XH-ViC"/>
                 <constraint firstItem="Nqm-Nb-uei" firstAttribute="top" secondItem="Tc8-Rs-B8y" secondAttribute="bottom" constant="20" id="vOp-Py-ZkZ"/>
             </constraints>
             <point key="canvasLocation" x="-71" y="57"/>
         </view>
     </objects>
     <resources>
+        <image name="avatar" width="23" height="23"/>
         <image name="pic" width="128" height="128"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

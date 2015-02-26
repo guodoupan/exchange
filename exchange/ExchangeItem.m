@@ -20,10 +20,10 @@
         self.type = [[object valueForKey:@"type"] integerValue];
         self.status = [[object valueForKey:@"status"] integerValue];
         self.wanted = [[object valueForKey:@"wanted"] integerValue];
-        self.userId = object[@"userid"];
         self.createdAt = [object createdAt];
         self.updatedAt = [object updatedAt];
         self.imageFile = object[@"imageFile"];
+        self.user = object[@"user"];
     }
     
     return self;
@@ -44,9 +44,9 @@
     object[@"desc"] = self.desc;
     object[@"type"] = @(self.type);
     object[@"status"] = @(self.status);
-    object[@"userid"] = self.userId;
-    object[@"imageFile"] = self.imageFile;
     object[@"wanted"] = @(self.wanted);
+    object[@"imageFile"] = self.imageFile;
+    object[@"user"] = self.user;
     
     return object;
 }

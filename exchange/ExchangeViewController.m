@@ -25,7 +25,7 @@
     if(self = [super init]){
         PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
         [query orderByDescending:@"updatedAt"];
-        [query whereKey:@"userid" containsString: [[PFUser currentUser] objectId]];
+        [query whereKey:@"user" equalTo:[PFUser currentUser]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (!error) {
                 // The find succeeded.

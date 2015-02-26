@@ -87,7 +87,7 @@
 - (void)loadData {
     PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
     [query orderByDescending:@"updatedAt"];
-    [query whereKey:@"userid" equalTo:[self.user objectId]];
+    [query whereKey:@"user" equalTo:self.user];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
@@ -103,6 +103,10 @@
     
     
     [self loadAvatar];
+    
+    [[PFUser currentUser] fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [self loadAvatar];
+    }];
 }
 
 - (void)loadTransaction {
@@ -168,6 +172,7 @@
 - (void)loadAvatar {
     // Actually we can save image inside the PFUser, no need for a new Class
     PFUser *user = [PFUser currentUser];
+    [self.headerView setUser:user];
     PFFile *imageFile = user[@"profilePic"];
     [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
         if (!error) {
@@ -177,15 +182,45 @@
     }];
 }
 
+-(UIImage *)resizeImage:(UIImage *)image toSize:(CGSize)size
+{
+    float width = size.width;
+    float height = size.height;
+    
+    UIGraphicsBeginImageContext(size);
+    CGRect rect = CGRectMake(0, 0, width, height);
+    
+    float widthRatio = image.size.width / width;
+    float heightRatio = image.size.height / height;
+    float divisor = widthRatio > heightRatio ? widthRatio : heightRatio;
+    
+    width = image.size.width / divisor;
+    height = image.size.height / divisor;
+    
+    rect.size.width  = width;
+    rect.size.height = height;
+    
+    if(height < width)
+        rect.origin.y = height / 3;
+    
+    [image drawInRect: rect];
+    
+    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return smallImage;
+}
 
 #pragma - image picker actions
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // Let's use the edited image which is square
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    UIImage *resizeImage = [self resizeImage:chosenImage toSize:CGSizeMake(300, 300)];
     [picker dismissViewControllerAnimated:YES completion:nil];
-    if (chosenImage != nil) {
-        [self.headerView setAvatar: chosenImage];
-        [self saveAvatar:chosenImage];
+    if (resizeImage != nil) {
+        [self.headerView setAvatar: resizeImage];
+        [self saveAvatar:resizeImage];
     }
 }
 

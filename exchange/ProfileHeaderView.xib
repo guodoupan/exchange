@@ -79,6 +79,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="avatarImage" destination="3EP-CR-3HF" id="ATn-um-rhL"/>
+                <outlet property="emailLabel" destination="JSz-2N-Z3F" id="pKN-Mv-Ri4"/>
                 <outlet property="nameLabel" destination="M9s-Eg-mA3" id="7Zb-xV-hRB"/>
                 <outlet property="segment" destination="DEw-J3-6DY" id="Ijm-Hf-IJV"/>
             </connections>

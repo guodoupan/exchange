@@ -24,6 +24,7 @@
     [super layoutSubviews];
     [self.nameLabel layoutIfNeeded];
     self.nameLabel.preferredMaxLayoutWidth = self.nameLabel.frame.size.width;
+    [self.wantLabel setEnabled:false];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
