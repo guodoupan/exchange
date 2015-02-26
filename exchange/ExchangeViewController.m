@@ -84,7 +84,7 @@
             PFQuery *itemQuery = [PFQuery queryWithClassName:@"ExchangeItem"];
             [itemQuery getObjectInBackgroundWithId:self.requestedItem.objectId block:^(PFObject *object, NSError *error) {
                 if (!error) {
-                    int wanted = [object[@"wanted"] integerValue];
+                    NSInteger wanted = [object[@"wanted"] integerValue];
                     object[@"wanted"] = @(wanted <= 0 ? 1 : wanted + 1);
                     object[@"status"] = @(ItemExchangeRequesting);
                     [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

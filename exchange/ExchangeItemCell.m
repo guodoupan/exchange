@@ -36,7 +36,7 @@
 - (void)setItem:(ExchangeItem *)item {
     if (item != nil) {
         self.nameLabel.text = item.name;
-        self.wantLabel.text = [NSString stringWithFormat:@"Wanted:%d", item.wanted];
+        self.wantLabel.text = [NSString stringWithFormat:@"Wanted:%ld", item.wanted];
     }
 }
 

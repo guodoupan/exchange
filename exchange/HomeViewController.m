@@ -70,10 +70,10 @@
     ExchangeItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExchangeItemCell"];
     ExchangeItem *item = self.dataArray[indexPath.row];
     //[cell setItemImage:[UIImage imageNamed:@"sunglass"]];
-    NSLog(@"get view:%d", indexPath.row);
+    NSLog(@"get view:%ld", indexPath.row);
     if (item.imageFile != nil) {
         [item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            NSLog(@"get data success %d", indexPath.row);
+            NSLog(@"get data success %ld", indexPath.row);
             if (!error) {
                 UIImage *image = [UIImage imageWithData:data];
                 [cell setItemImage:image];
@@ -143,7 +143,7 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
             // The find succeeded.
-            NSLog(@"Successfully retrieved %d items.", objects.count);
+            NSLog(@"Successfully retrieved %ld items.", objects.count);
             // Do something with the found objects
             self.dataArray = [ExchangeItem exchangeItemsWithArray:objects];
             [self.tableView reloadData];

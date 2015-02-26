@@ -37,7 +37,7 @@
     [query whereKey:@"requestedItemId" equalTo:self.requestedItem.objectId];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (!error) {
-            NSLog(@"transaction item:%d", objects.count);
+            NSLog(@"transaction item:%lu", (unsigned long)objects.count);
         } else {
             NSLog(@"transaction error: %@", error);
         }
@@ -55,7 +55,7 @@
         if (!error) {
             // The find succeeded.
             // Do something with the found objects
-            NSLog(@"load transaction:%d", objects.count);
+            NSLog(@"load transaction:%ld", objects.count);
             self.dataArray = [ExchangeItem exchangeItemsWithArray:objects];
             [self.tableView reloadData];
         } else {
@@ -74,7 +74,7 @@
     
     if (item.imageFile != nil) {
         [item.imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            NSLog(@"get data success %d", indexPath.row);
+            NSLog(@"get data success %ld", indexPath.row);
             if (!error) {
                 UIImage *image = [UIImage imageWithData:data];
                 [cell setIcon:image];
