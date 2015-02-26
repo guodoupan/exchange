@@ -84,22 +84,25 @@
     return size.height + 1;
 }
 
+
 - (void)loadData {
-    PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
-    [query orderByDescending:@"updatedAt"];
-    [query whereKey:@"user" equalTo:self.user];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            // Do something with the found objects
-            self.myItemsDataArray = [ExchangeItem exchangeItemsWithArray:objects];
-            [self.tableView reloadData];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-        [self.refreshControl endRefreshing];
-    }];
+    if(self.showMyItem == YES){
+        PFQuery *query = [PFQuery queryWithClassName:@"ExchangeItem"];
+        [query orderByDescending:@"updatedAt"];
+        [query whereKey:@"user" equalTo:[PFUser currentUser]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            if (!error) {
+                // The find succeeded.
+                // Do something with the found objects
+                self.myItemsDataArray = [ExchangeItem exchangeItemsWithArray:objects];
+                [self.tableView reloadData];
+                [self.refreshControl endRefreshing];
+            } else {
+                // Log details of the failure
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
+            }
+        }];
+    }
     
     
     [self loadAvatar];
@@ -144,6 +147,15 @@
 - (void)onSetting {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Logout" otherButtonTitles:@"Change Icon from Library", @"Take a New Profile Picture", nil];
     [actionSheet showInView:self.view];
+}
+
+-(void) onShowMyItems{
+    if(self.showMyItem == NO){
+        self.showMyItem = YES;
+    }else{
+        self.showMyItem = NO;
+    }
+    [self loadData];
 }
 
 - (void)changeIcon: (NSString *)sourceType {

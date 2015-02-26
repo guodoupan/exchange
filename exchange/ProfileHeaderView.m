@@ -46,4 +46,10 @@
     [self.delegate onSetting];
 }
 
+- (IBAction)onMyItemChange:(id)sender {
+    [self.delegate onShowMyItems];
+}
+
+
+
 @end

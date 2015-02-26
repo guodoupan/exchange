@@ -14,6 +14,7 @@
 @protocol ProfileHeaderViewDelegate <NSObject>
 
 - (void)onSetting;
+- (void)onShowMyItems;
 
 @end
 
