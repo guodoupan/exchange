@@ -71,7 +71,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ExchangeItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ExchangeItemCell"];
     ExchangeItem *item = self.dataArray[indexPath.row];
-    NSArray *trans = self.transactionArray[indexPath.row];
     //[cell setItemImage:[UIImage imageNamed:@"sunglass"]];
     NSLog(@"get view:%ld", indexPath.row);
     if (item.imageFile != nil) {
@@ -80,7 +79,6 @@
             if (!error) {
                 UIImage *image = [UIImage imageWithData:data];
                 [cell setItemImage:image];
-                [cell setTransactionsArray:trans];
             }
         }];
     } else {
@@ -170,6 +168,8 @@
         
         PFQuery *query = [PFQuery queryWithClassName:@"Transaction"];
         [query whereKey:@"requestedItemId" equalTo:item.objectId];
+        [query includeKey:@"requestingUser"];
+        [query includeKey:@"requestedUser"];
         NSArray *objects = [query findObjects];
         for (Transaction *trans in objects) {
             [arrIntem addObject:trans];

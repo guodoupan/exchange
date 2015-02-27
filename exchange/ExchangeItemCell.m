@@ -12,7 +12,6 @@
 @interface ExchangeItemCell()
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *byLabel;
 @property (weak, nonatomic) IBOutlet UITextField *wantLabel;
 @end
 
@@ -46,13 +45,4 @@
     self.iconImage.image = image;
 }
 
-- (void)setTransactionsArray:(NSArray *)transactionsArray {
-    if (transactionsArray.count > 0) {
-        NSMutableString *userNameStr = [[NSMutableString alloc]init];
-        for (Transaction *trans in transactionsArray) {
-            [userNameStr appendFormat:@" ,%@", trans.requestingUser.username];
-        }
-        self.byLabel.text = userNameStr;
-    }
-}
 @end

@@ -11,7 +11,6 @@
 @interface ExchangeItemCell : UITableViewCell
 
 @property (nonatomic, strong) ExchangeItem *item;
-@property (nonatomic, strong) NSArray *transactionsArray;
 
 - (void)setItemImage: (UIImage *)image;
 @end
