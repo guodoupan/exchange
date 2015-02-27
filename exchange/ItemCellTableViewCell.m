@@ -20,6 +20,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.itemImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.itemImageView.clipsToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
