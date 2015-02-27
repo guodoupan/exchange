@@ -15,4 +15,6 @@
 @interface TransactionViewController : UIViewController
 
 @property (nonatomic, strong) ExchangeItem *requestedItem;
+@property (nonatomic, strong) TransactionCell *prototypeCell;
+
 @end

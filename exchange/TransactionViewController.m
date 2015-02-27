@@ -67,6 +67,13 @@
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.prototypeCell.item = self.dataArray[indexPath.row];
+    [self.prototypeCell layoutIfNeeded];
+    CGSize size = [self.prototypeCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TransactionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TransactionCell"];
     ExchangeItem *item = self.dataArray[indexPath.row];
@@ -126,6 +133,14 @@
 
 - (IBAction)onClose:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma - setter for prototype cell
+- (TransactionCell *)prototypeCell {
+    if (!_prototypeCell) {
+        _prototypeCell = [self.tableView dequeueReusableCellWithIdentifier:@"TransactionCell"];
+    }
+    return _prototypeCell;
 }
 
 /*
